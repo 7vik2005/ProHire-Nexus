@@ -40,12 +40,12 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     }
   }
 
-  async function updateProfilePic(fromData: any) {
+  async function updateProfilePic(formData: any) {
     setLoading(true);
     try {
       const { data } = await axios.put(
         `${user_service}/api/user/update/pic`,
-        fromData,
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -62,12 +62,12 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     }
   }
 
-  async function updateResume(fromData: any) {
+  async function updateResume(formData: any) {
     setLoading(true);
     try {
       const { data } = await axios.put(
         `${user_service}/api/user/update/resume`,
-        fromData,
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,

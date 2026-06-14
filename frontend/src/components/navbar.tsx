@@ -29,7 +29,7 @@ const NavBar = () => {
             <Link href={"/"} className="flex items-center gap-1 group">
               <div className="text-2xl font-bold tracking-tight">
                 <span className="bg-linear-to-r from bg-blue-600 to-blue-800 bg-clip-text text-transparent">
-                  ProHire
+                  ProHire{" "}
                 </span>
                 <span className="text-red-500">Nexus</span>
               </div>
@@ -182,7 +182,7 @@ const NavBar = () => {
 
           {isAuth ? (
             <>
-              <Link href={"/about"} onClick={toggleMenu}>
+              <Link href={"/account"} onClick={toggleMenu}>
                 <Button
                   variant={"ghost"}
                   className="w-full justify-start gap-3 h-11"
@@ -204,7 +204,7 @@ const NavBar = () => {
           ) : (
             <Link href={"/login"} onClick={toggleMenu}>
               <Button className="w-full justify-start gap-3 h-11 mt-2">
-                <User size={18} /> SignIn
+                <User size={18} /> Sign In
               </Button>
             </Link>
           )}

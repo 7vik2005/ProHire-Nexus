@@ -95,7 +95,7 @@ const JobPage = () => {
   const [value, setValue] = useState("");
 
   const updateApplicationHandler = async (id: number) => {
-    if (value === "") return toast.error("Please give valid value");
+    if (value === "") return toast.error("Please select a valid status");
 
     try {
       const { data } = await axios.put(
@@ -218,12 +218,12 @@ const JobPage = () => {
                         <p className="text-xs opacity-70 font-medium mb-1">
                           Openings
                         </p>
-                        <p className="font-semibold">{job.openings} postions</p>
+                        <p className="font-semibold">{job.openings} positions</p>
                       </div>
                     </div>
                   </div>
 
-                  {/* job descripiton */}
+                  {/* Job description */}
                   <div className="space-y-4">
                     <h2 className="text-2xl font-bold flex items-center gap-2">
                       <Briefcase size={24} className="text-blue-600" />
@@ -332,13 +332,13 @@ const JobPage = () => {
 
               {filteredApplications.length === 0 && (
                 <p className="text-center py-8 opacity-70">
-                  No application with status {filterStatus}
+                  No applications with status "{filterStatus}"
                 </p>
               )}
             </>
           ) : (
             <>
-              <p className="text-center py-8 opacity-70">No application Yet.</p>
+              <p className="text-center py-8 opacity-70">No applications yet.</p>
             </>
           )}
         </div>

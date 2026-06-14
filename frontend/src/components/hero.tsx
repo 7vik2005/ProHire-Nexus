@@ -26,7 +26,7 @@ const Hero = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Find Your Dream Job at{" "}
               <span className="inline-block">
-                ProHire<span className="text-red-500">Nexus</span>
+                ProHire <span className="text-red-500">Nexus</span>
               </span>
             </h1>
 

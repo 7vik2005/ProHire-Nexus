@@ -82,7 +82,7 @@ export const updateProfilePic = TryCatch(
     const fileBuffer = getBuffer(file);
 
     if (!fileBuffer || !fileBuffer.content) {
-      throw new ErrorHandler(500, "failed to generate buffer");
+      throw new ErrorHandler(500, "Failed to generate buffer");
     }
 
     const { data: uploadResult } = await axios.post(
@@ -98,7 +98,7 @@ export const updateProfilePic = TryCatch(
     `;
 
     res.json({
-      message: "profile pic updated",
+      message: "Profile picture updated",
       updatedUser,
     });
   }
@@ -114,7 +114,7 @@ export const updateResume = TryCatch(async (req: AuthenticatedRequest, res) => {
   const file = req.file;
 
   if (!file) {
-    throw new ErrorHandler(400, "No pdf file provided");
+    throw new ErrorHandler(400, "No PDF file provided");
   }
 
   const oldPublicId = user.resume_public_id;
@@ -230,7 +230,7 @@ export const applyForJob = TryCatch(async (req: AuthenticatedRequest, res) => {
   }
 
   if (user.role !== "jobseeker") {
-    throw new ErrorHandler(403, "Forbidden you are not allowed for this api");
+    throw new ErrorHandler(403, "Forbidden: You are not authorized");
   }
 
   const applicant_id = user.user_id;
@@ -240,20 +240,20 @@ export const applyForJob = TryCatch(async (req: AuthenticatedRequest, res) => {
   if (!resume) {
     throw new ErrorHandler(
       400,
-      "You need to add resume in your profile to apply for this job"
+      "You need to add a resume to your profile to apply for this job"
     );
   }
 
   const { job_id } = req.body;
 
   if (!job_id) {
-    throw new ErrorHandler(400, "job id is required");
+    throw new ErrorHandler(400, "Job ID is required");
   }
 
   const [job] = await sql`SELECT is_active FROM jobs WHERE job_id = ${job_id}`;
 
   if (!job) {
-    throw new ErrorHandler(404, "No jobs with this id");
+    throw new ErrorHandler(404, "No job found with this ID");
   }
 
   if (!job.is_active) {
@@ -275,7 +275,7 @@ export const applyForJob = TryCatch(async (req: AuthenticatedRequest, res) => {
       await sql`INSERT INTO applications (job_id, applicant_id, applicant_email, resume, subscribed) VALUES (${job_id}, ${applicant_id}, ${user?.email}, ${resume}, ${isSubscribed})`;
   } catch (error: any) {
     if (error.code === "23505") {
-      throw new ErrorHandler(409, "you have already applied to this job.");
+      throw new ErrorHandler(409, "You have already applied to this job.");
     }
     throw error;
   }

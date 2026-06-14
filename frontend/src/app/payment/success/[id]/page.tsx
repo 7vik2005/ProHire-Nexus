@@ -16,7 +16,7 @@ const PaymentVerification = () => {
         </div>
         <h1 className="text-3xl font-bold mb-2">Payment Successful!</h1>
         <p className="text-base opacity-70 mb-8">
-          Your Subscription is now active. Your transaction id is {id}
+          Your subscription is now active. Your transaction ID is {id}.
         </p>
 
         <Link href={"/account"}>Go to account page</Link>

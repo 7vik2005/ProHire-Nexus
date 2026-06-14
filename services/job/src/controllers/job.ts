@@ -25,7 +25,7 @@ export const createCompany = TryCatch(
     const { name, description, website } = req.body;
 
     if (!name || !description || !website) {
-      throw new ErrorHandler(400, "All the fields required");
+      throw new ErrorHandler(400, "All fields are required");
     }
 
     const existingCompanies =
@@ -99,7 +99,7 @@ export const createJob = TryCatch(async (req: AuthenticatedRequest, res) => {
   if (user.role !== "recruiter") {
     throw new ErrorHandler(
       403,
-      "Forbidden: Only recruiter can create a company"
+      "Forbidden: Only recruiters can create a job"
     );
   }
 
@@ -116,7 +116,7 @@ export const createJob = TryCatch(async (req: AuthenticatedRequest, res) => {
   } = req.body;
 
   if (!title || !description || !salary || !location || !role || !openings) {
-    throw new ErrorHandler(400, "All the fields required");
+    throw new ErrorHandler(400, "All fields are required");
   }
 
   const [company] =
@@ -145,7 +145,7 @@ export const updateJob = TryCatch(async (req: AuthenticatedRequest, res) => {
   if (user.role !== "recruiter") {
     throw new ErrorHandler(
       403,
-      "Forbidden: Only recruiter can create a company"
+      "Forbidden: Only recruiters can update a job"
     );
   }
 
@@ -170,7 +170,7 @@ export const updateJob = TryCatch(async (req: AuthenticatedRequest, res) => {
   }
 
   if (existingJob.posted_by_recuriter_id !== user.user_id) {
-    throw new ErrorHandler(403, "Forbiden: You are not allowed");
+    throw new ErrorHandler(403, "Forbidden: You are not authorized");
   }
 
   const [updatedJob] = await sql`UPDATE jobs SET title = ${title},
@@ -281,11 +281,11 @@ export const getAllApplicationForJob = TryCatch(
     `;
 
     if (!job) {
-      throw new ErrorHandler(404, "job not found");
+      throw new ErrorHandler(404, "Job not found");
     }
 
     if (job.posted_by_recuriter_id !== user.user_id) {
-      throw new ErrorHandler(403, "Forbidden you are not allowed");
+      throw new ErrorHandler(403, "Forbidden: You are not authorized");
     }
 
     const applications =
@@ -320,7 +320,7 @@ export const updateApplication = TryCatch(
       await sql`SELECT posted_by_recuriter_id, title FROM jobs WHERE job_id = ${application.job_id}`;
 
     if (!job) {
-      throw new ErrorHandler(404, "no job with this id");
+      throw new ErrorHandler(404, "No job found with this ID");
     }
 
     if (job.posted_by_recuriter_id !== user.user_id) {
@@ -332,12 +332,12 @@ export const updateApplication = TryCatch(
 
     const message = {
       to: application.applicant_email,
-      subject: "Application Update - Job portal",
+      subject: "Application Update - ProHire Nexus",
       html: applicationStatusUpdateTemplate(job.title),
     };
 
     publishToTopic("send-mail", message).catch((error) => {
-      console.error("Failed to publish message to kafka", error);
+      console.error("Failed to publish message to Kafka", error);
     });
 
     res.json({
