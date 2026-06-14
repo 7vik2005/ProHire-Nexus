@@ -9,10 +9,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Health check route
+app.get("/", (req, res) => {
+  res.json({ message: "User service is running" });
+});
+
 app.use("/api/user", userRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(
-    `User service is running on http://localhost:${process.env.PORT}`
+    `User service is running on http://localhost:${process.env.PORT}`,
   );
 });

@@ -8,6 +8,11 @@ app.use(cors());
 
 app.use(express.json());
 
+// Health check route
+app.get("/", (req, res) => {
+  res.json({ message: "Job service is running" });
+});
+
 app.use("/api/job", jobRoutes);
 
 export default app;

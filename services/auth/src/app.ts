@@ -9,6 +9,11 @@ app.use(express.json());
 
 connectKafka();
 
+// Health check route
+app.get("/", (req, res) => {
+  res.json({ message: "Auth service is running" });
+});
+
 app.use("/api/auth", authRoutes);
 
 export default app;

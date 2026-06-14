@@ -46,7 +46,9 @@ const LoginPage = () => {
       fetchApplications();
     } catch (error: any) {
       console.log(error);
-      toast.error(error.response.data.message);
+      const errorMessage =
+        error.response?.data?.message || error.message || "Login failed";
+      toast.error(errorMessage);
       setIsAuth(false);
     } finally {
       setBtnLoading(false);

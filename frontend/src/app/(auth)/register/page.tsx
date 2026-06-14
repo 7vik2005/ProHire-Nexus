@@ -49,7 +49,7 @@ const RegisterPage = () => {
     try {
       const { data } = await axios.post(
         `${auth_service}/api/auth/register`,
-        formData
+        formData,
       );
 
       toast.success(data.message);
@@ -62,7 +62,9 @@ const RegisterPage = () => {
       setUser(data.registeredUser);
       setIsAuth(true);
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      const errorMessage =
+        error.response?.data?.message || error.message || "Registration failed";
+      toast.error(errorMessage);
       setIsAuth(false);
     } finally {
       setBtnLoading(false);

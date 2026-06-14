@@ -6,13 +6,19 @@ import toast, { Toaster } from "react-hot-toast";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-export const utils_service = "http://35.154.186.96:5001";
-export const auth_service = "http://35.154.186.96:5000";
-export const user_service = "http://35.154.186.96:5002";
-export const job_service = "http://35.154.186.96:5003";
-export const payment_service = "http://35.154.186.96:5004";
+export const utils_service = "http://localhost:5001";
+export const auth_service = "http://localhost:5000";
+export const user_service = "http://localhost:5002";
+export const job_service = "http://localhost:5003";
+export const payment_service = "http://localhost:5004";
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
+
+const getErrorMessage = (error: any): string => {
+  return (
+    error.response?.data?.message || error.message || "Something went wrong"
+  );
+};
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -50,13 +56,13 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       toast.success(data.message);
       fetchUser();
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      toast.error(getErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -72,13 +78,13 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       toast.success(data.message);
       fetchUser();
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      toast.error(getErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -94,12 +100,12 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       toast.success(data.message);
       fetchUser();
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      toast.error(getErrorMessage(error));
     } finally {
       setBtnLoading(false);
     }
@@ -114,7 +120,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
   async function addSkill(
     skill: string,
-    setSkill: React.Dispatch<React.SetStateAction<string>>
+    setSkill: React.Dispatch<React.SetStateAction<string>>,
   ) {
     setBtnLoading(true);
     try {
@@ -125,13 +131,13 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       toast.success(data.message);
       setSkill("");
       fetchUser();
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      toast.error(getErrorMessage(error));
     } finally {
       setBtnLoading(false);
     }
@@ -146,12 +152,12 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       toast.success(data.message);
       fetchUser();
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      toast.error(getErrorMessage(error));
     }
   }
 
@@ -165,13 +171,13 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       toast.success(data.message);
       fetchApplications();
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      toast.error(getErrorMessage(error));
     } finally {
       setBtnLoading(false);
     }
@@ -187,7 +193,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       setApplications(data);

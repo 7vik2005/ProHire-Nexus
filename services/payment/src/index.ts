@@ -15,6 +15,12 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// Health check route
+app.get("/", (req, res) => {
+  res.json({ message: "Payment service is running" });
+});
+
 app.use("/api/payment", paymentRoutes);
 
 app.listen(process.env.PORT, () => {
