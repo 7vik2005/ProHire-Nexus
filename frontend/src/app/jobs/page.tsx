@@ -102,12 +102,12 @@ const JobsPage = () => {
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-sm opacity-70">Active Filters:</span>
               {title && (
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 text-sm">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground border border-border text-sm">
                   <Search size={14} />
                   {title}
                   <button
                     onClick={() => setTitle("")}
-                    className="hover:bg-blue-200 dark:bg-blue-800 rounded-full p-0.5"
+                    className="hover:bg-muted rounded-full p-0.5"
                   >
                     <X size={14} />
                   </button>
@@ -115,12 +115,12 @@ const JobsPage = () => {
               )}
 
               {location && (
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 text-sm">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground border border-border text-sm">
                   <MapPin size={14} />
                   {location}
                   <button
                     onClick={() => setLocation("")}
-                    className="hover:bg-blue-200 dark:bg-blue-800 rounded-full p-0.5"
+                    className="hover:bg-muted rounded-full p-0.5"
                   >
                     <X size={14} />
                   </button>
@@ -159,7 +159,7 @@ const JobsPage = () => {
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
               <DialogTitle className="text-2xl flex items-center gap-2">
-                <Filter className="text-blue-600" />
+                <Filter className="text-red-500" />
                 Filter Jobs
               </DialogTitle>
             </DialogHeader>
@@ -195,11 +195,11 @@ const JobsPage = () => {
                   id="location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  className="w-full h-11 px-3 border-2 border-gray-300 rounded-md bg-transparent focus:outline-none focus:ring2"
+                  className="w-full h-11 px-3 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                 >
-                  <option value="">All Locations</option>
+                  <option value="" className="bg-background text-foreground">All Locations</option>
                   {locations.map((e) => (
-                    <option value={e} key={e}>
+                    <option value={e} key={e} className="bg-background text-foreground">
                       {e}
                     </option>
                   ))}

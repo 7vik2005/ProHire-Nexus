@@ -131,7 +131,7 @@ const JobPage = () => {
               </Button>
 
               <Card className="overflow-hidden shadow-lg border-2 mb-6">
-                <div className="bg-blue-600 p-8 border-b">
+                <div className="bg-zinc-950 dark:bg-zinc-900 p-8 border-b">
                   <div className="flex items-start justify-between gap-4 flex-wrap">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-3">
@@ -187,8 +187,8 @@ const JobPage = () => {
                 <div className="p-8">
                   <div className="grid md:grid-cols-3 gap-6 mb-8">
                     <div className="flex items-center gap-3 p-4 rounded-lg border bg-background">
-                      <div className="h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
-                        <MapPin size={20} className="text-blue-600" />
+                      <div className="h-12 w-12 rounded-full bg-red-100 dark:bg-red-950/30 flex items-center justify-center shrink-0">
+                        <MapPin size={20} className="text-red-500" />
                       </div>
                       <div>
                         <p className="text-xs opacity-70 font-medium mb-1">
@@ -199,8 +199,8 @@ const JobPage = () => {
                     </div>
 
                     <div className="flex items-center gap-3 p-4 rounded-lg border bg-background">
-                      <div className="h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
-                        <DollarSign size={20} className="text-blue-600" />
+                      <div className="h-12 w-12 rounded-full bg-red-100 dark:bg-red-950/30 flex items-center justify-center shrink-0">
+                        <DollarSign size={20} className="text-red-500" />
                       </div>
                       <div>
                         <p className="text-xs opacity-70 font-medium mb-1">
@@ -211,8 +211,8 @@ const JobPage = () => {
                     </div>
 
                     <div className="flex items-center gap-3 p-4 rounded-lg border bg-background">
-                      <div className="h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
-                        <Users size={20} className="text-blue-600" />
+                      <div className="h-12 w-12 rounded-full bg-red-100 dark:bg-red-950/30 flex items-center justify-center shrink-0">
+                        <Users size={20} className="text-red-500" />
                       </div>
                       <div>
                         <p className="text-xs opacity-70 font-medium mb-1">
@@ -226,7 +226,7 @@ const JobPage = () => {
                   {/* Job description */}
                   <div className="space-y-4">
                     <h2 className="text-2xl font-bold flex items-center gap-2">
-                      <Briefcase size={24} className="text-blue-600" />
+                      <Briefcase size={24} className="text-red-500" />
                       Job Description
                     </h2>
 
@@ -255,12 +255,12 @@ const JobPage = () => {
                 id="filter-status"
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="p-2 border-2 border-gray-300 rounded-md bg-background"
+                className="p-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
               >
-                <option value="All">All Status</option>
-                <option value="Submitted">Submitted</option>
-                <option value="Hired">Hired</option>
-                <option value="Rejected">Rejected</option>
+                <option value="All" className="bg-background text-foreground">All Status</option>
+                <option value="Submitted" className="bg-background text-foreground">Submitted</option>
+                <option value="Hired" className="bg-background text-foreground">Hired</option>
+                <option value="Rejected" className="bg-background text-foreground">Rejected</option>
               </select>
             </div>
           </div>
@@ -291,7 +291,7 @@ const JobPage = () => {
                       <Link
                         target="_blank"
                         href={e.resume}
-                        className="text-blue-500 hover:underline text-sm"
+                        className="text-red-500 hover:underline text-sm font-medium"
                       >
                         View Resume
                       </Link>
@@ -299,7 +299,7 @@ const JobPage = () => {
                       <Link
                         target="_blank"
                         href={`/account/${e.applicant_id}`}
-                        className="text-blue-500 hover:underline text-sm"
+                        className="text-red-500 hover:underline text-sm font-medium"
                       >
                         View Profile
                       </Link>
@@ -310,12 +310,12 @@ const JobPage = () => {
                       <select
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
-                        className="flex-1 p-2 border-2 border-gray-300 rounded-md bg-background"
+                        className="flex-1 p-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                       >
-                        <option value="">Update status</option>
-                        <option value="Submitted">Submitted</option>
-                        <option value="Hired">Hired</option>
-                        <option value="Rejected">Rejected</option>
+                        <option value="" className="bg-background text-foreground">Update status</option>
+                        <option value="Submitted" className="bg-background text-foreground">Submitted</option>
+                        <option value="Hired" className="bg-background text-foreground">Hired</option>
+                        <option value="Rejected" className="bg-background text-foreground">Rejected</option>
                       </select>
                       <Button
                         disabled={btnLoading}

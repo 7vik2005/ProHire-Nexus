@@ -38,19 +38,21 @@ const Skills: React.FC<AccountProps> = ({ user, isYourAccount }) => {
   return (
     <div className="max-w-5xl mx-auto px-4 py-6">
       <Card className="shadow-lg border-2 overflow-hidden">
-        <div className="bg-blue-500 p-6 border-b">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="h-10 w-10 rounded-lg bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-              <Award size={20} className="text-blue-600" />
+        <div className="bg-zinc-950 dark:bg-zinc-900 p-6 border-b">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center">
+              <Award size={20} className="text-white" />
             </div>
-            <CardTitle className="text-2xl text-white">
-              {isYourAccount ? "Your Skills" : "User Skills"}
-            </CardTitle>
-            {isYourAccount && (
-              <CardDescription className="text-sm mt-1 text-white">
-                Showcase your expertise and abilities
-              </CardDescription>
-            )}
+            <div>
+              <CardTitle className="text-2xl text-white">
+                {isYourAccount ? "Your Skills" : "User Skills"}
+              </CardTitle>
+              {isYourAccount && (
+                <CardDescription className="text-sm mt-1 text-zinc-300">
+                  Showcase your expertise and abilities
+                </CardDescription>
+              )}
+            </div>
           </div>
         </div>
 

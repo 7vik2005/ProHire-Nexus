@@ -86,20 +86,17 @@ const RegisterPage = () => {
               <Label htmlFor="role" className="text-sm font-medium">
                 I want to
               </Label>
-              <div className="relative">
-                <Briefcase className="icon-style" />
-                <select
-                  id="role"
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                  className="w-full h-11 pl-10 pr-4 border-2 border-gray-300 rounded-md bg-transparent "
-                  required
-                >
-                  <option value="">Select your role</option>
-                  <option value="jobseeker">Find a Job</option>
-                  <option value="recruiter">Hire Talent</option>
-                </select>
-              </div>
+              <select
+                id="role"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="w-full h-11 px-4 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                required
+              >
+                <option value="" className="bg-background text-foreground">Select your role</option>
+                <option value="jobseeker" className="bg-background text-foreground">Find a Job</option>
+                <option value="recruiter" className="bg-background text-foreground">Hire Talent</option>
+              </select>
             </div>
 
             {role && (
@@ -108,70 +105,58 @@ const RegisterPage = () => {
                   <Label htmlFor="name" className="text-sm font-medium">
                     Full Name
                   </Label>
-                  <div className="relative">
-                    <Mail className="icon-style" />
-                    <Input
-                      id="name"
-                      type="text"
-                      placeholder="John Doe"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                      className="pl-10 h-11"
-                    />
-                  </div>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="John Doe"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    className="h-11"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-sm font-medium">
                     Email Address
                   </Label>
-                  <div className="relative">
-                    <Mail className="icon-style" />
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="you@example.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className="pl-10 h-11"
-                    />
-                  </div>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="h-11"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="password" className="text-sm font-medium">
                     Password
                   </Label>
-                  <div className="relative">
-                    <Lock className="icon-style" />
-                    <Input
-                      id="password"
-                      type="password"
-                      placeholder="********"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                      className="pl-10 h-11"
-                    />
-                  </div>
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="********"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="h-11"
+                  />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="text-sm font-medium">
                     Phone Number
                   </Label>
-                  <div className="relative">
-                    <Lock className="icon-style" />
-                    <Input
-                      id="phone"
-                      type="number"
-                      placeholder="+91 1234567890"
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                      required
-                      className="pl-10 h-11"
-                    />
-                  </div>
+                  <Input
+                    id="phone"
+                    type="number"
+                    placeholder="+91 1234567890"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    required
+                    className="h-11"
+                  />
                 </div>
 
                 {role === "jobseeker" && (
@@ -180,38 +165,32 @@ const RegisterPage = () => {
                       <Label htmlFor="resume" className="text-sm font-medium">
                         Resume (PDF)
                       </Label>
-                      <div className="relative">
-                        <Lock className="icon-style" />
-                        <Input
-                          id="resume"
-                          type="file"
-                          accept="application/pdf"
-                          onChange={(e) => {
-                            if (e.target.files && e.target.files[0]) {
-                              setResume(e.target.files[0]);
-                            }
-                          }}
-                          className="h-11 cursor-pointer"
-                        />
-                      </div>
+                      <Input
+                        id="resume"
+                        type="file"
+                        accept="application/pdf"
+                        onChange={(e) => {
+                          if (e.target.files && e.target.files[0]) {
+                            setResume(e.target.files[0]);
+                          }
+                        }}
+                        className="h-11 cursor-pointer"
+                      />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="bio" className="text-sm font-medium">
                         Bio
                       </Label>
-                      <div className="relative">
-                        <Lock className="icon-style" />
-                        <Input
-                          id="bio"
-                          type="text"
-                          placeholder="Tell us about yourself..."
-                          value={bio}
-                          onChange={(e) => setBio(e.target.value)}
-                          required
-                          className="pl-10 h-11"
-                        />
-                      </div>
+                      <Input
+                        id="bio"
+                        type="text"
+                        placeholder="Tell us about yourself..."
+                        value={bio}
+                        onChange={(e) => setBio(e.target.value)}
+                        required
+                        className="h-11"
+                      />
                     </div>
                   </div>
                 )}

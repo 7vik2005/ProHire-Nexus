@@ -45,14 +45,14 @@ const AppliedJobs: React.FC<AppliedJobsProps> = ({ applications }) => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
       <Card className="shadow-lg border-2 overflow-hidden">
-        <div className="bg-blue-600 text-white p-6 border-b">
+        <div className="bg-zinc-950 dark:bg-zinc-900 text-white p-6 border-b">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-lg bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-              <Briefcase size={20} className="text-blue-600" />
+            <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center">
+              <Briefcase size={20} className="text-white" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold">Your Applied Jobs</h1>
-          <p className="text-sm font-bold">
+          <h1 className="text-2xl font-bold mt-2">Your Applied Jobs</h1>
+          <p className="text-sm opacity-80 mt-1">
             {applications.length} applications submitted
           </p>
         </div>
@@ -67,7 +67,7 @@ const AppliedJobs: React.FC<AppliedJobsProps> = ({ applications }) => {
                 return (
                   <div
                     key={a.application_id}
-                    className="p-5 rounded-lg border-2 hover:border-blue-500 transition-all bg-background"
+                    className="p-5 rounded-lg border-2 hover:border-red-500 transition-all bg-background"
                   >
                     <div className="flex items-start justify-between gap-4 flex-wrap">
                       <div className="flex-1 min-w-0">

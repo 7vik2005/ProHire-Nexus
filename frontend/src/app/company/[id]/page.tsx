@@ -218,7 +218,7 @@ const CompanyPage = () => {
       {company && (
         <div className="max-w-6xl mx-auto px-4 py-8">
           <Card className="overflow-hidden shadow-lg border-2 mb-8">
-            <div className="h-32 bg-blue-600"></div>
+            <div className="h-32 bg-zinc-950 dark:bg-zinc-900"></div>
             <div className="px-8 pb-8">
               <div className="flex flex-col md:flex-row gap-6 items-start md:items-end -mt-16">
                 <div className="w-32 h-32 rounded-2xl border-4 border-background overflow-hidden shadow-xl bg-background shrink-0">
@@ -252,11 +252,11 @@ const CompanyPage = () => {
           <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
             {/* Job section */}
             <Card className="shadow-lg border-2 overflow-hidden">
-              <div className="bg-blue-600 border-b p-6">
+              <div className="bg-zinc-950 dark:bg-zinc-900 border-b p-6">
                 <div className="flex items-center justify-between flex-wrap gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-lg bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-                      <Briefcase size={20} className="text-blue-600" />
+                    <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center">
+                      <Briefcase size={20} className="text-white" />
                     </div>
                   </div>
                   <h2 className="text-2xl font-bold text-white">
@@ -463,7 +463,7 @@ const CompanyPage = () => {
                     {company.jobs.map((j) => (
                       <div
                         key={j.job_id}
-                        className="p-5 rounded-lg border-2 hover:border-blue-500 transition-all bg-background"
+                        className="p-5 rounded-lg border-2 hover:border-red-500 transition-all bg-background"
                       >
                         <div className="flex items-start justify-between gap-4 flex-wrap">
                           <div className="flex-1 min-w-0">

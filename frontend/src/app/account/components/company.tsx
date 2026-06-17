@@ -139,15 +139,15 @@ const Company = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
       <Card className="shadow-lg border-2 overflow-hidden">
-        <div className="bg-blue-500 p-6 border-b">
+        <div className="bg-zinc-950 dark:bg-zinc-900 p-6 border-b">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-                <Building2 size={20} className="text-blue-600" />
+              <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center">
+                <Building2 size={20} className="text-white" />
               </div>
             </div>
             <CardTitle className="text-2xl text-white">My Companies</CardTitle>
-            <CardDescription className="text-sm mt-1 text-white">
+            <CardDescription className="text-sm mt-1 text-zinc-300">
               Manage your registered companies ({companies.length}/3)
             </CardDescription>
 
@@ -169,7 +169,7 @@ const Company = () => {
                 {companies.map((c) => (
                   <div
                     key={c.company_id}
-                    className="flex items-center gap-4 p-4 rounded-lg border-2 hover:border-blue-500 transition-all bg-background"
+                    className="flex items-center gap-4 p-4 rounded-lg border-2 hover:border-red-500 transition-all bg-background"
                   >
                     <div className="h-16 w-16 rounded-full border-2 overflow-hidden shrink-0 bg-background">
                       <img
@@ -190,7 +190,7 @@ const Company = () => {
                       <a
                         href={c.website}
                         target="_blank"
-                        className="text-xs text-blue-500 hover:underline flex items-center gap-1"
+                        className="text-xs text-red-500 hover:underline flex items-center gap-1"
                       >
                         <Globe size={12} />
                         {c.website}
@@ -245,7 +245,7 @@ const Company = () => {
         <DialogContent className="sm:max-w-[550px]">
           <DialogHeader>
             <DialogTitle className="text-2xl flex items-center gap-2">
-              <Building2 className="text-blue-600" />
+              <Building2 className="text-red-500" />
               Add New Company
             </DialogTitle>
           </DialogHeader>

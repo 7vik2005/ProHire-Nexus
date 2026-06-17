@@ -58,8 +58,8 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2">
+        <div className="text-center mb-8 flex flex-col items-center justify-center">
+          <h1 className="text-4xl font-bold mb-2 whitespace-nowrap w-max">
             Welcome back to ProHire Nexus
           </h1>
           <p className="text-sm opacity-70">Sign in to continue your journey</p>
@@ -70,36 +70,30 @@ const LoginPage = () => {
               <Label htmlFor="email" className="text-sm font-medium">
                 Email Address
               </Label>
-              <div className="relative">
-                <Mail className="icon-style" />
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="you@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="pl-10 h-11"
-                />
-              </div>
+              <Input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="h-11"
+              />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="password" className="text-sm font-medium">
                 Password
               </Label>
-              <div className="relative">
-                <Lock className="icon-style" />
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="********"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className="pl-10 h-11"
-                />
-              </div>
+              <Input
+                id="password"
+                type="password"
+                placeholder="********"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="h-11"
+              />
             </div>
 
             <div className="flex items-center justify-end">
