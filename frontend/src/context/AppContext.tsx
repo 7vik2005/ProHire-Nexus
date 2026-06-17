@@ -26,13 +26,12 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [btnLoading, setBtnLoading] = useState(false);
 
-  const token = Cookies.get("token");
-
   async function fetchUser() {
+    const currentToken = Cookies.get("token");
     try {
       const { data } = await axios.get(`${user_service}/api/user/me`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${currentToken}`,
         },
       });
 
@@ -47,6 +46,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   }
 
   async function updateProfilePic(formData: any) {
+    const currentToken = Cookies.get("token");
     setLoading(true);
     try {
       const { data } = await axios.put(
@@ -54,7 +54,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         },
       );
@@ -69,6 +69,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   }
 
   async function updateResume(formData: any) {
+    const currentToken = Cookies.get("token");
     setLoading(true);
     try {
       const { data } = await axios.put(
@@ -76,7 +77,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         },
       );
@@ -91,6 +92,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   }
 
   async function updateUser(name: string, phoneNumber: string, bio: string) {
+    const currentToken = Cookies.get("token");
     setBtnLoading(true);
     try {
       const { data } = await axios.put(
@@ -98,14 +100,16 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         { name, phoneNumber, bio },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         },
       );
       toast.success(data.message);
       fetchUser();
+      return true;
     } catch (error: any) {
       toast.error(getErrorMessage(error));
+      return false;
     } finally {
       setBtnLoading(false);
     }
@@ -122,6 +126,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     skill: string,
     setSkill: React.Dispatch<React.SetStateAction<string>>,
   ) {
+    const currentToken = Cookies.get("token");
     setBtnLoading(true);
     try {
       const { data } = await axios.post(
@@ -129,7 +134,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         { skillName: skill },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         },
       );
@@ -144,13 +149,14 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   }
 
   async function removeSkill(skill: string) {
+    const currentToken = Cookies.get("token");
     try {
       const { data } = await axios.put(
         `${user_service}/api/user/skill/delete`,
         { skillName: skill },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         },
       );
@@ -162,6 +168,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   }
 
   async function applyJob(job_id: number) {
+    const currentToken = Cookies.get("token");
     setBtnLoading(true);
     try {
       const { data } = await axios.post(
@@ -169,7 +176,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         { job_id },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         },
       );
@@ -186,12 +193,13 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [applications, setApplications] = useState<Application[]>([]);
 
   async function fetchApplications() {
+    const currentToken = Cookies.get("token");
     try {
       const { data } = await axios.get(
         `${user_service}/api/user/application/all`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         },
       );

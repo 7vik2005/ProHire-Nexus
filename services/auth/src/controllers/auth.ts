@@ -189,9 +189,9 @@ export const resetPassword = TryCatch(async (req, res, next) => {
 
   const email = decoded.email;
 
-  const stroredToken = await redisClient.get(`forgot:${email}`);
+  const storedToken = await redisClient.get(`forgot:${email}`);
 
-  if (!stroredToken || stroredToken !== token) {
+  if (!storedToken || storedToken !== token) {
     throw new ErrorHandler(400, "token has been expired");
   }
 

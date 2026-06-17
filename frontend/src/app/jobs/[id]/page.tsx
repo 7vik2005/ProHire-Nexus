@@ -6,7 +6,7 @@ import { job_service, useAppData } from "@/context/AppContext";
 import { Application, Job } from "@/type";
 import axios from "axios";
 import {
-  ArrowRight,
+  ArrowLeft,
   Briefcase,
   Building2,
   CheckCircle2,
@@ -60,15 +60,14 @@ const JobPage = () => {
 
   const [jobApplications, setJobApplications] = useState<Application[]>([]);
 
-  const token = Cookies.get("token");
-
   async function fetchJobApplications() {
     try {
+      const currentToken = Cookies.get("token");
       const { data } = await axios.get(
         `${job_service}/api/job/application/${id}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         }
       );
@@ -98,12 +97,13 @@ const JobPage = () => {
     if (value === "") return toast.error("Please select a valid status");
 
     try {
+      const currentToken = Cookies.get("token");
       const { data } = await axios.put(
         `${job_service}/api/job/application/update/${id}`,
         { status: value },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         }
       );
@@ -127,7 +127,7 @@ const JobPage = () => {
                 className="mb-6 gap-2"
                 onClick={() => router.back()}
               >
-                <ArrowRight size={18} /> Back to jobs
+                <ArrowLeft size={18} /> Back to jobs
               </Button>
 
               <Card className="overflow-hidden shadow-lg border-2 mb-6">

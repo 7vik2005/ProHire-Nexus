@@ -54,35 +54,34 @@ const Skills: React.FC<AccountProps> = ({ user, isYourAccount }) => {
           </div>
         </div>
 
-        {/* Add Skills Input */}
-        {isYourAccount && (
-          <div className="flex gap-3 flex-col sm:flex-row">
-            <div className="relative flex-1">
-              <Sparkle
-                size={18}
-                className="absolute left-3 top-1/2 -translate-y-1/2 opacity-50"
-              />
-              <Input
-                type="text"
-                placeholder="e.g. React, Node.js, Python..."
-                className="h-11 pl-10 bg-background"
-                value={skill}
-                onChange={(e) => setSkill(e.target.value)}
-                onKeyPress={handleKeyPress}
-              />
-            </div>
-            <Button
-              onClick={addSkillHandler}
-              className="h-11 gap-2 px-6"
-              disabled={!skill.trim() || btnLoading}
-            >
-              <Plus size={18} /> Add Skills
-            </Button>
-          </div>
-        )}
-
         {/* Skills Display */}
-        <CardContent className="p-6">
+        <CardContent className="p-6 space-y-6">
+          {/* Add Skills Input */}
+          {isYourAccount && (
+            <div className="flex gap-3 flex-col sm:flex-row">
+              <div className="relative flex-1">
+                <Sparkle
+                  size={18}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 opacity-50"
+                />
+                <Input
+                  type="text"
+                  placeholder="e.g. React, Node.js, Python..."
+                  className="h-11 pl-10 bg-background"
+                  value={skill}
+                  onChange={(e) => setSkill(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                />
+              </div>
+              <Button
+                onClick={addSkillHandler}
+                className="h-11 gap-2 px-6"
+                disabled={!skill.trim() || btnLoading}
+              >
+                <Plus size={18} /> Add Skills
+              </Button>
+            </div>
+          )}
           {user.skills && user.skills.length > 0 ? (
             <div className="flex flex-wrap gap-3">
               {user.skills.map((e, i) => (

@@ -48,7 +48,6 @@ import {
 
 const CompanyPage = () => {
   const { id } = useParams();
-  const token = Cookies.get("token");
 
   const { user, isAuth } = useAppData();
   const [loading, setLoading] = useState(false);
@@ -74,11 +73,9 @@ const CompanyPage = () => {
   const isRecruiterOwner =
     user && company && user.user_id === company.recruiter_id;
 
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isUpdatedModalOpen, setIsUpdatedModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
-
-  const addModalRef = useRef<HTMLButtonElement>(null);
-  const updateModalRef = useRef<HTMLButtonElement>(null);
 
   const [title, settitle] = useState("");
   const [description, setdescription] = useState("");
@@ -105,6 +102,7 @@ const CompanyPage = () => {
   const addJobHandler = async () => {
     setBtnLoading(true);
     try {
+      const currentToken = Cookies.get("token");
       const jobData = {
         title,
         description,
@@ -119,14 +117,14 @@ const CompanyPage = () => {
 
       await axios.post(`${job_service}/api/job/new`, jobData, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${currentToken}`,
         },
       });
 
       toast.success("New job posted successfully");
       fetchCompany();
       clearInput();
-      addModalRef.current?.click();
+      setIsAddModalOpen(false);
     } catch (error: any) {
       console.log(error);
       toast.error(error.response.data.message);
@@ -139,9 +137,10 @@ const CompanyPage = () => {
     if (confirm("Are you sure you want to delete this job?")) {
       setBtnLoading(true);
       try {
+        const currentToken = Cookies.get("token");
         await axios.delete(`${job_service}/api/job/${jobId}`, {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         });
 
@@ -180,6 +179,7 @@ const CompanyPage = () => {
 
     setBtnLoading(true);
     try {
+      const currentToken = Cookies.get("token");
       const updateData = {
         title,
         description,
@@ -197,7 +197,7 @@ const CompanyPage = () => {
         updateData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         }
       );
@@ -249,7 +249,7 @@ const CompanyPage = () => {
             </div>
           </Card>
 
-          <Dialog>
+          <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
             {/* Job section */}
             <Card className="shadow-lg border-2 overflow-hidden">
               <div className="bg-blue-600 border-b p-6">
@@ -441,7 +441,7 @@ const CompanyPage = () => {
 
                     <DialogFooter>
                       <DialogClose asChild>
-                        <Button ref={addModalRef} variant={"outline"}>
+                        <Button variant={"outline"}>
                           Cancel
                         </Button>
                       </DialogClose>
@@ -729,8 +729,9 @@ const CompanyPage = () => {
                       {is_active ? (
                         <CheckCircle size={16} className="text-green-600" />
                       ) : (
-                        <XCircle size={16} className="text-gray-50" />
+                        <XCircle size={16} className="text-red-500" />
                       )}
+                      Job Status
                     </Label>
 
                     <Select
@@ -751,7 +752,7 @@ const CompanyPage = () => {
 
               <DialogFooter>
                 <DialogClose asChild>
-                  <Button ref={addModalRef} variant={"outline"}>
+                  <Button variant={"outline"}>
                     Cancel
                   </Button>
                 </DialogClose>

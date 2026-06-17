@@ -77,7 +77,7 @@ export interface AppContextType {
   logoutUser: () => Promise<void>;
   updateProfilePic: (formData: any) => Promise<void>;
   updateResume: (formData: any) => Promise<void>;
-  updateUser: (name: string, phoneNumber: string, bio: string) => Promise<void>;
+  updateUser: (name: string, phoneNumber: string, bio: string) => Promise<boolean>;
   addSkill: (
     skill: string,
     setSkill: React.Dispatch<React.SetStateAction<string>>

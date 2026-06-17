@@ -186,7 +186,7 @@ const CarrerGuide = () => {
 
                 <div className="space-y-6 py-4">
                   {/* summary */}
-                  <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-b-blue-200 dark:border-b-blue-800">
+                  <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800">
                     <div className="flex items-start gap-3">
                       <Lightbulb
                         className="text-blue-600 mt-1 shrink-0"

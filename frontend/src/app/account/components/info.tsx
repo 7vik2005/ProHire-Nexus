@@ -32,12 +32,11 @@ import React, { ChangeEvent, useRef, useState } from "react";
 
 const Info: React.FC<AccountProps> = ({ user, isYourAccount }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const editRef = useRef<HTMLButtonElement | null>(null);
   const resumeRef = useRef<HTMLInputElement | null>(null);
-
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [bio, setBio] = useState("");
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
   const { updateProfilePic, updateResume, btnLoading, updateUser } =
     useAppData();
@@ -56,14 +55,17 @@ const Info: React.FC<AccountProps> = ({ user, isYourAccount }) => {
   };
 
   const handleEditClick = () => {
-    editRef.current?.click();
     setName(user.name);
     setPhoneNumber(user.phone_number);
     setBio(user.bio || "");
+    setIsEditOpen(true);
   };
 
-  const updateProfileHandler = () => {
-    updateUser(name, phoneNumber, bio);
+  const updateProfileHandler = async () => {
+    const success = await updateUser(name, phoneNumber, bio);
+    if (success) {
+      setIsEditOpen(false);
+    }
   };
 
   const handleResumeClick = () => {
@@ -341,12 +343,7 @@ const Info: React.FC<AccountProps> = ({ user, isYourAccount }) => {
       </Card>
 
       {/* Dialog box for edit */}
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button ref={editRef} variant={"outline"} className="hidden">
-            Edit Profile
-          </Button>
-        </DialogTrigger>
+      <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
 
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>

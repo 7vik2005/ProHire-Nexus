@@ -33,10 +33,10 @@ import { Input } from "@/components/ui/input";
 const Company = () => {
   const { loading } = useAppData();
 
-  const addRef = useRef<HTMLButtonElement | null>(null);
+  const [isAddOpen, setIsAddOpen] = useState(false);
 
   const openDialog = () => {
-    addRef.current?.click();
+    setIsAddOpen(true);
   };
 
   const [name, setName] = useState("");
@@ -53,15 +53,14 @@ const Company = () => {
     setLogo(null);
   };
 
-  const token = Cookies.get("token");
-
   const [companyLoading, setCompanyLoading] = useState(true);
 
   async function fetchCompanies() {
+    const currentToken = Cookies.get("token");
     try {
       const { data } = await axios.get(`${job_service}/api/job/company/all`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${currentToken}`,
         },
       });
 
@@ -78,6 +77,7 @@ const Company = () => {
       return alert("Please Provide all details");
     }
 
+    const currentToken = Cookies.get("token");
     const formData = new FormData();
 
     formData.append("name", name);
@@ -92,13 +92,14 @@ const Company = () => {
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         }
       );
       toast.success(data.message);
       clearData();
       fetchCompanies();
+      setIsAddOpen(false);
     } catch (error: any) {
       toast.error(error.response.data.message);
     } finally {
@@ -109,12 +110,13 @@ const Company = () => {
   async function deleteCompany(id: string) {
     if (confirm("Are you sure you want to delete this company")) {
       try {
+        const currentToken = Cookies.get("token");
         setBtnLoading(true);
         const { data } = await axios.delete(
           `${job_service}/api/job/company/${id}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${currentToken}`,
             },
           }
         );
@@ -239,10 +241,7 @@ const Company = () => {
       </Card>
 
       {/* Add Company Dialog */}
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button className="hidden" ref={addRef}></Button>
-        </DialogTrigger>
+      <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
         <DialogContent className="sm:max-w-[550px]">
           <DialogHeader>
             <DialogTitle className="text-2xl flex items-center gap-2">
@@ -296,7 +295,7 @@ const Company = () => {
               <Input
                 id="website"
                 type="text"
-                placeholder="Enter Description"
+                placeholder="https://example.com"
                 className="h-11"
                 value={website}
                 onChange={(e) => setWebsite(e.target.value)}

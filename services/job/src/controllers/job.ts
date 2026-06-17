@@ -230,27 +230,19 @@ export const getAllActiveJobs = TryCatch(async (req, res) => {
     location?: string;
   };
 
-  let querySting = `SELECT j.job_id, j.title, j.description, j.salary, j.location, j.job_type, j.role, j.work_location, j.created_at, c.name AS company_name, c.logo AS company_logo, c.company_id AS company_id FROM jobs j JOIN companies c ON j.company_id = c.company_id WHERE j.is_active = true`;
+  const titlePattern = title ? `%${title}%` : null;
+  const locationPattern = location ? `%${location}%` : null;
 
-  const values = [];
-
-  let paramIndex = 1;
-
-  if (title) {
-    querySting += ` AND j.title ILIKE $${paramIndex}`;
-    values.push(`%${title}%`);
-    paramIndex++;
-  }
-
-  if (location) {
-    querySting += ` AND j.location ILIKE $${paramIndex}`;
-    values.push(`%${location}%`);
-    paramIndex++;
-  }
-
-  querySting += " ORDER BY j.created_at DESC";
-
-  const jobs = (await sql.query(querySting, values)) as any[];
+  const jobs = await sql`
+    SELECT j.job_id, j.title, j.description, j.salary, j.location, j.job_type, j.role, j.work_location, j.created_at, 
+           c.name AS company_name, c.logo AS company_logo, c.company_id AS company_id 
+    FROM jobs j 
+    JOIN companies c ON j.company_id = c.company_id 
+    WHERE j.is_active = true
+      AND (${titlePattern}::text IS NULL OR j.title ILIKE ${titlePattern})
+      AND (${locationPattern}::text IS NULL OR j.location ILIKE ${locationPattern})
+    ORDER BY j.created_at DESC
+  `;
 
   res.json(jobs);
 });

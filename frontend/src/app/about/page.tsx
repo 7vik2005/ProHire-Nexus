@@ -26,8 +26,7 @@ const About = () => {
             </h1>
 
             <p
-              className="text-lg md:text-xl leading-relaxed opacity-90 max-w-3xl mx
-auto"
+              className="text-lg md:text-xl leading-relaxed opacity-90 max-w-3xl mx-auto"
             >
               At ProHire Nexus, we're dedicated to revolutionizing the job search
               experience. Our mission is to create meaningful connections

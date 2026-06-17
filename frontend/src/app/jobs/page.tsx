@@ -36,17 +36,17 @@ const JobsPage = () => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
 
-  const token = Cookies.get("token");
   const ref = useRef<HTMLButtonElement>(null);
 
   async function fetchJobs() {
     setLoading(true);
     try {
+      const currentToken = Cookies.get("token");
       const { data } = await axios.get(
         `${job_service}/api/job/all?title=${title}&location=${location}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${currentToken}`,
           },
         }
       );

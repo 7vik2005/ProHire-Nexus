@@ -115,8 +115,7 @@ const ResumeAnalyzer = () => {
     <div className="max-w-7xl mx-auto px-4 py-16 bg-secondary/30">
       <div className="text-center mb-12">
         <div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border bg
-red-50 dark:bg-red-950/30 mb-4"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border bg-red-50 dark:bg-red-950/30 mb-4"
         >
           <FileCheck size={16} className="text-red-500" />
           <span className="text-sm font-medium">AI-Powered ATS Analysis</span>
@@ -155,13 +154,11 @@ red-50 dark:bg-red-950/30 mb-4"
                 <div className="space-y-4 py-4">
                   <div
                     onClick={() => fileInputRef.current?.click()}
-                    className="border-2 border-dashed rounded-lg p-12 text-center cursor
-pointer hover:border-blue-500 transition-colors"
+                    className="border-2 border-dashed rounded-lg p-12 text-center cursor-pointer hover:border-blue-500 transition-colors"
                   >
                     <div className="flex flex-col items-center gap-4">
                       <div
-                        className="h-16 w-16 rounded-full bg-blue-100 dark:bg-blue
-900/30 flex items-center justify-center"
+                        className="h-16 w-16 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center"
                       >
                         <Upload size={32} className="text-blue-600" />
                       </div>
@@ -244,8 +241,7 @@ pointer hover:border-blue-500 transition-colors"
 
                   {/* Summary */}
                   <div
-                    className="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/30 border 
-border-blue-200 dark:border-blue-800"
+                    className="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800"
                   >
                     <p className="text-sm leading-relaxed">
                       {response.summary}
@@ -283,8 +279,7 @@ border-blue-200 dark:border-blue-800"
 
                   {/* Strengths */}
                   <div
-                    className="p-4 rounded-lg bg-green-50 dark:bg-green-950/30 border 
-border-green-200 dark:border-green-800"
+                    className="p-4 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800"
                   >
                     <h3 className="font-semibold mb-3 flex items-center gap-2">
                       <CheckCircle2 size={18} className="text-green-600" />
@@ -316,9 +311,8 @@ border-green-200 dark:border-green-800"
                             <h4 className="font-semibold text-sm">
                               {suggestion.category}
                             </h4>
-                            <span
-                              className={`text-xs px-2 py-1 rounded-full border 
-${getPriorityColor(suggestion.priority)}`}
+                             <span
+                              className={`text-xs px-2 py-1 rounded-full border ${getPriorityColor(suggestion.priority)}`}
                             >
                               {suggestion.priority}
                             </span>

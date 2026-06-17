@@ -28,7 +28,7 @@ const NavBar = () => {
           <div className="flex items-center">
             <Link href={"/"} className="flex items-center gap-1 group">
               <div className="text-2xl font-bold tracking-tight">
-                <span className="bg-linear-to-r from bg-blue-600 to-blue-800 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                   ProHire{" "}
                 </span>
                 <span className="text-red-500">Nexus</span>
