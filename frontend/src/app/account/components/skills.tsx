@@ -37,18 +37,18 @@ const Skills: React.FC<AccountProps> = ({ user, isYourAccount }) => {
   };
   return (
     <div className="max-w-5xl mx-auto px-4 py-6">
-      <Card className="shadow-lg border-2 overflow-hidden">
-        <div className="bg-zinc-950 dark:bg-zinc-900 p-6 border-b">
+      <Card className="neo-card rounded-none dark:border-zinc-100 dark:shadow-[6px_6px_0px_0px_rgba(250,250,250,1)] bg-background overflow-hidden">
+        <div className="bg-amber-300 dark:bg-amber-500 p-6 border-b-3 border-black text-black">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center">
-              <Award size={20} className="text-white" />
+            <div className="h-10 w-10 border-2 border-black bg-white flex items-center justify-center">
+              <Award size={20} className="text-black" />
             </div>
             <div>
-              <CardTitle className="text-2xl text-white">
+              <CardTitle className="text-2xl font-black uppercase text-black">
                 {isYourAccount ? "Your Skills" : "User Skills"}
               </CardTitle>
               {isYourAccount && (
-                <CardDescription className="text-sm mt-1 text-zinc-300">
+                <CardDescription className="text-sm mt-1 text-black font-semibold">
                   Showcase your expertise and abilities
                 </CardDescription>
               )}
@@ -60,16 +60,16 @@ const Skills: React.FC<AccountProps> = ({ user, isYourAccount }) => {
         <CardContent className="p-6 space-y-6">
           {/* Add Skills Input */}
           {isYourAccount && (
-            <div className="flex gap-3 flex-col sm:flex-row">
+            <div className="flex gap-3 flex-col sm:flex-row mb-2">
               <div className="relative flex-1">
                 <Sparkle
                   size={18}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 opacity-50"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 opacity-70 text-foreground"
                 />
                 <Input
                   type="text"
                   placeholder="e.g. React, Node.js, Python..."
-                  className="h-11 pl-10 bg-background"
+                  className="h-12 pl-10 border-3 border-black dark:border-zinc-100 bg-background text-foreground focus-visible:ring-0 focus-visible:border-rose-500 rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-semibold"
                   value={skill}
                   onChange={(e) => setSkill(e.target.value)}
                   onKeyPress={handleKeyPress}
@@ -77,7 +77,7 @@ const Skills: React.FC<AccountProps> = ({ user, isYourAccount }) => {
               </div>
               <Button
                 onClick={addSkillHandler}
-                className="h-11 gap-2 px-6"
+                className="h-12 gap-2 px-6 neo-btn neo-btn-hover bg-rose-400 hover:bg-rose-500 text-black border-3 rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
                 disabled={!skill.trim() || btnLoading}
               >
                 <Plus size={18} /> Add Skills
@@ -88,15 +88,15 @@ const Skills: React.FC<AccountProps> = ({ user, isYourAccount }) => {
             <div className="flex flex-wrap gap-3">
               {user.skills.map((e, i) => (
                 <div
-                  className="group relative inline-flex items-center gap-2 border-2 rounded-full hover:shadow-sm duration-200 transition-all pl-4 pr-3 py-2"
+                  className="group relative inline-flex items-center gap-2 border-2 border-black dark:border-zinc-100 bg-cyan-200 text-black font-extrabold text-sm rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] pl-4 pr-3 py-1.5"
                   key={i}
                 >
-                  <span className="font-medium text-sm">{e}</span>
+                  <span>{e}</span>
 
                   {isYourAccount && (
                     <button
                       onClick={() => removeSkillHandler(e)}
-                      className="h-6 w-6 rounded-full text-red-500 flex items-center justify-evenly transition-all hover:bg-gray-600 hover:scale-110"
+                      className="h-6 w-6 border border-black bg-white text-rose-500 flex items-center justify-center transition-all hover:bg-rose-500 hover:text-white rounded-none ml-1 cursor-pointer"
                     >
                       <X size={14} />
                     </button>
@@ -107,10 +107,10 @@ const Skills: React.FC<AccountProps> = ({ user, isYourAccount }) => {
           ) : (
             <>
               <div className="text-center py-12">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 mb-4">
-                  <Award size={32} className="opacity-40" />
+                <div className="inline-flex items-center justify-center w-16 h-16 border-3 border-black dark:border-zinc-100 bg-white dark:bg-zinc-800 mb-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(250,250,250,1)] rounded-none">
+                  <Award size={32} className="text-black dark:text-zinc-100" />
                 </div>
-                <CardDescription className="text-base">
+                <CardDescription className="text-base font-bold text-foreground">
                   {isYourAccount
                     ? "No skills added yet. Start building your profile!"
                     : "No skills added by user"}

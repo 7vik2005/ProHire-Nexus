@@ -80,38 +80,36 @@ const CarrerGuide = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-16">
       <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border bg-blue-50 dark:bg-blue-950 mb-4">
-          <Sparkles size={16} className="text-blue-600" />
-          <span className="text-sm font-medium">
-            AI-Powered Career Guidance
-          </span>
+        <div className="inline-flex items-center gap-2 px-4 py-2 border-2 border-black dark:border-white font-bold text-xs uppercase bg-lime-400 text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+          <Sparkles size={16} />
+          <span>AI-Powered Career Guidance fr</span>
         </div>
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight mt-4 mb-2">
           Discover Your Career Path
         </h2>
-        <p className="text-lg opacity-70 max-w-2xl mx-auto mb-8">
+        <p className="text-lg opacity-80 max-w-2xl mx-auto mb-8 font-medium">
           Get personalized job recommendations and learning roadmaps based on
           your skills.
         </p>
 
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size={"lg"} className="gap-2 h-12 px-8">
+            <Button size={"lg"} className="neo-btn neo-btn-hover h-12 px-8 bg-lime-400 hover:bg-lime-500 text-black border-3 border-black gap-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
               <Sparkles size={18} />
               Get Career Guidance
               <ArrowRight size={18} />
             </Button>
           </DialogTrigger>
 
-          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto neo-card border-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(250,250,250,1)] p-8">
             {!response ? (
               <>
                 <DialogHeader>
-                  <DialogTitle className="text-2xl flex items-center gap-2">
-                    <Sparkles className="text-blue-600" />
+                  <DialogTitle className="text-2xl font-black uppercase tracking-tight flex items-center gap-2">
+                    <Sparkles className="text-lime-500" />
                     Tell us about your skills
                   </DialogTitle>
-                  <DialogDescription>
+                  <DialogDescription className="text-sm font-bold opacity-70 uppercase tracking-wider">
                     Add your technical skills to receive personalized career
                     recommendations
                   </DialogDescription>
@@ -119,17 +117,17 @@ const CarrerGuide = () => {
 
                 <div className="space-y-4 py-4">
                   <div className="space-y-2">
-                    <Label htmlFor="skill">Add Skills</Label>
+                    <Label htmlFor="skill" className="text-xs uppercase font-black tracking-wider">Add Skills</Label>
                     <div className="flex gap-2">
                       <Input
                         id="skill"
                         placeholder="e.g., React, Node.js, Python..."
                         value={currentSkill}
                         onChange={(e) => setCurrentSkill(e.target.value)}
-                        className="h-11"
+                        className="h-11 border-3 border-black dark:border-zinc-700 bg-background text-foreground focus-visible:ring-0 focus-visible:border-red-500 rounded-none font-bold"
                         onKeyPress={handleKeyPress}
                       />
-                      <Button onClick={addSkill} className="gap-2">
+                      <Button onClick={addSkill} className="neo-btn neo-btn-hover h-11 bg-yellow-300 hover:bg-yellow-400 text-black border-3 border-black gap-2 shrink-0">
                         Add
                       </Button>
                     </div>
@@ -137,17 +135,17 @@ const CarrerGuide = () => {
 
                   {skills.length > 0 && (
                     <div className="space-y-2">
-                      <Label>Your Skills ({skills.length})</Label>
+                      <Label className="text-xs uppercase font-black tracking-wider">Your Skills ({skills.length})</Label>
                       <div className="flex flex-wrap gap-2">
                         {skills.map((s) => (
                           <div
                             key={s}
-                            className="inline-flex items-center gap-2 pl-3 pr-2 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800"
+                            className="inline-flex items-center gap-2 pl-3 pr-2 py-1 border-2 border-black bg-yellow-300 text-black font-bold text-xs uppercase rounded-none"
                           >
                             <span className="text-sm font-medium">{s}</span>
                             <button
                               onClick={() => removeSkill(s)}
-                              className="h-5 w-5 rounded-full bg-red-500 text-white flex in-checked: justify-center"
+                              className="h-5 w-5 rounded-full bg-red-500 text-white flex items-center justify-center hover:scale-110"
                             >
                               <X size={13} />
                             </button>
@@ -160,7 +158,7 @@ const CarrerGuide = () => {
                   <Button
                     onClick={getCarrerGuidance}
                     disabled={loading || skills.length === 0}
-                    className="w-full h-11 gap-2"
+                    className="neo-btn neo-btn-hover w-full h-11 bg-lime-400 hover:bg-lime-505 text-black border-3 border-black gap-2"
                   >
                     {loading ? (
                       <>
@@ -178,23 +176,23 @@ const CarrerGuide = () => {
             ) : (
               <>
                 <DialogHeader>
-                  <DialogTitle className="text-2xl flex items-center gap-2">
-                    <Target className="text-blue-600" />
+                  <DialogTitle className="text-2xl font-black uppercase tracking-tight flex items-center gap-2">
+                    <Target className="text-lime-500" />
                     Your Personalized Career Guide
                   </DialogTitle>
                 </DialogHeader>
 
                 <div className="space-y-6 py-4">
                   {/* summary */}
-                  <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800">
+                  <div className="p-5 neo-card bg-zinc-50 dark:bg-zinc-900 border-3">
                     <div className="flex items-start gap-3">
                       <Lightbulb
-                        className="text-blue-600 mt-1 shrink-0"
+                        className="text-yellow-500 mt-1 shrink-0 animate-pulse"
                         size={20}
                       />
                       <div>
-                        <h3 className="font-semibold mb-2">Career Summary</h3>
-                        <p className="text-sm leading-relaxed opacity-90">
+                        <h3 className="font-black uppercase tracking-tight mb-2">Career Summary</h3>
+                        <p className="text-sm leading-relaxed opacity-90 font-medium">
                           {response.summary}
                         </p>
                       </div>
@@ -203,14 +201,14 @@ const CarrerGuide = () => {
 
                   {/* job options */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                      <Briefcase size={20} className="text-blue-600" />
+                    <h3 className="text-lg font-black uppercase tracking-tight mb-3 flex items-center gap-2">
+                      <Briefcase size={20} className="text-red-500" />
                       Recommended Career Paths
                     </h3>
                     <div className="space-y-3">
                       {response.jobOptions.map((job, index) => (
                         <div
-                          className="p-4 rounded-lg border hover:border-blue-500 transition-colors"
+                          className="p-5 neo-card neo-card-hover border-3 bg-background"
                           key={index}
                         >
                           <h4 className="font-semibold text-base mb-2">

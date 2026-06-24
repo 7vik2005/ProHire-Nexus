@@ -76,22 +76,24 @@ const JobsPage = () => {
 
   const hasActiveFilters = title || location;
   return (
-    <div className="min-h-screen bg-secondary/30">
-      <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-background">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Header Section */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
+        <div className="mb-10">
+          <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold mb-2">
-                Explore <span className="text-red-500">Opportunities</span>
+              <h1 className="text-4xl md:text-5xl font-black uppercase mb-3 tracking-tight">
+                Explore <span className="text-rose-500">Opportunities</span>
               </h1>
-              <p className="text-base opacity-70">{jobs.length} jobs</p>
+              <p className="text-sm font-bold opacity-90 uppercase tracking-wide bg-zinc-100 dark:bg-zinc-800 px-3 py-1.5 border-2 border-black dark:border-zinc-100 w-fit">
+                {jobs.length} jobs active (no cap)
+              </p>
             </div>
 
-            <Button className="gap-2 h-11" onClick={clickEvent}>
+            <Button className="gap-2 h-12 neo-btn neo-btn-hover bg-amber-300 text-black border-3 rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" onClick={clickEvent}>
               <Filter size={18} /> Filters
               {hasActiveFilters && (
-                <span className="ml-1 px-2 py-0.5 rounded-full bg-red-500 text-white text-xs">
+                <span className="ml-1 px-2 py-0.5 border border-black bg-rose-400 text-black text-xs font-black uppercase">
                   Active
                 </span>
               )}
@@ -99,15 +101,15 @@ const JobsPage = () => {
           </div>
 
           {hasActiveFilters && (
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-sm opacity-70">Active Filters:</span>
+            <div className="flex items-center gap-3 flex-wrap mb-6">
+              <span className="text-sm font-extrabold uppercase opacity-80">Active Filters:</span>
               {title && (
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground border border-border text-sm">
+                <div className="flex items-center gap-2 px-3 py-1.5 border-2 border-black dark:border-zinc-100 bg-cyan-200 text-black text-sm font-extrabold rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                   <Search size={14} />
                   {title}
                   <button
                     onClick={() => setTitle("")}
-                    className="hover:bg-muted rounded-full p-0.5"
+                    className="hover:bg-cyan-300 rounded-none p-0.5 ml-1"
                   >
                     <X size={14} />
                   </button>
@@ -115,12 +117,12 @@ const JobsPage = () => {
               )}
 
               {location && (
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground border border-border text-sm">
+                <div className="flex items-center gap-2 px-3 py-1.5 border-2 border-black dark:border-zinc-100 bg-amber-200 text-black text-sm font-extrabold rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                   <MapPin size={14} />
                   {location}
                   <button
                     onClick={() => setLocation("")}
-                    className="hover:bg-muted rounded-full p-0.5"
+                    className="hover:bg-amber-300 rounded-none p-0.5 ml-1"
                   >
                     <X size={14} />
                   </button>
@@ -134,17 +136,18 @@ const JobsPage = () => {
           ) : (
             <>
               {jobs && jobs.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                   {jobs.map((job) => (
                     <JobCard job={job} key={job.job_id} />
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-16">
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 dark:bg-gray-800 mb-4">
-                    <Briefcase size={40} className="opacity-40" />
+                <div className="text-center py-16 neo-card bg-rose-100 dark:bg-rose-950/40 rounded-none border-4">
+                  <div className="inline-flex items-center justify-center w-20 h-20 border-3 border-black dark:border-zinc-100 bg-white dark:bg-zinc-800 mb-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(250,250,250,1)] rounded-none">
+                    <Briefcase size={40} className="text-black dark:text-zinc-100" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">No jobs found</h3>
+                  <h3 className="text-2xl font-black uppercase mb-2">No jobs found</h3>
+                  <p className="font-semibold text-sm opacity-80">Try adjusting your filters, fam.</p>
                 </div>
               )}
             </>
@@ -156,19 +159,19 @@ const JobsPage = () => {
             <Button ref={ref} className="hidden"></Button>
           </DialogTrigger>
 
-          <DialogContent className="sm:max-w-[500px]">
-            <DialogHeader>
-              <DialogTitle className="text-2xl flex items-center gap-2">
-                <Filter className="text-red-500" />
+          <DialogContent className="sm:max-w-[500px] neo-card rounded-none p-6 md:p-8 dark:border-zinc-100 dark:shadow-[6px_6px_0px_0px_rgba(250,250,250,1)]">
+            <DialogHeader className="mb-6">
+              <DialogTitle className="text-3xl font-black uppercase flex items-center gap-2">
+                <Filter className="text-rose-500" size={28} />
                 Filter Jobs
               </DialogTitle>
             </DialogHeader>
 
-            <div className="space-y-5 py-4">
+            <div className="space-y-6 py-2">
               <div className="space-y-2">
                 <Label
                   htmlFor="title"
-                  className="text-sm font-medium flex items-center gap-2"
+                  className="text-sm font-black uppercase tracking-wide flex items-center gap-2"
                 >
                   <Search size={16} />
                   Search by job title
@@ -177,7 +180,7 @@ const JobsPage = () => {
                   id="title"
                   type="text"
                   placeholder="Enter job title"
-                  className="h-11"
+                  className="h-12 border-3 border-black dark:border-zinc-100 bg-background text-foreground focus-visible:ring-0 focus-visible:border-rose-500 rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-semibold"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
@@ -186,7 +189,7 @@ const JobsPage = () => {
               <div className="space-y-2">
                 <Label
                   htmlFor="location"
-                  className="text-sm font-medium flex items-center gap-2"
+                  className="text-sm font-black uppercase tracking-wide flex items-center gap-2"
                 >
                   <MapPin size={16} />
                   Location
@@ -195,11 +198,11 @@ const JobsPage = () => {
                   id="location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  className="w-full h-11 px-3 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                  className="w-full h-12 px-3 border-3 border-black dark:border-zinc-100 bg-background text-foreground focus:outline-none focus:ring-0 rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-semibold dark:bg-zinc-900"
                 >
-                  <option value="" className="bg-background text-foreground">All Locations</option>
+                  <option value="" className="bg-background text-foreground dark:bg-zinc-900">All Locations</option>
                   {locations.map((e) => (
-                    <option value={e} key={e} className="bg-background text-foreground">
+                    <option value={e} key={e} className="bg-background text-foreground dark:bg-zinc-900">
                       {e}
                     </option>
                   ))}
@@ -207,13 +210,12 @@ const JobsPage = () => {
               </div>
             </div>
 
-            <DialogFooter className="gap-2">
+            <DialogFooter className="mt-8">
               <Button
-                variant={"outline"}
                 onClick={clearFilter}
-                className="flex-1"
+                className="w-full h-12 neo-btn neo-btn-hover bg-rose-400 hover:bg-rose-500 text-black rounded-none border-3"
               >
-                Clear All
+                Clear All Filters
               </Button>
             </DialogFooter>
           </DialogContent>

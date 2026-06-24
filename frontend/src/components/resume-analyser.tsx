@@ -92,89 +92,87 @@ const ResumeAnalyzer = () => {
   };
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return "text-green-600";
-    if (score >= 60) return "text-yellow-600";
-    return "text-red-600";
+    return "text-black font-extrabold";
   };
 
   const getScoreBgColor = (score: number) => {
-    if (score >= 80) return "bg-green-100 dark:bg-green-900/30";
-    if (score >= 60) return "bg-yellow-100 dark:bg-yellow-900/30";
-    return "bg-red-100 dark:bg-red-900/30";
+    if (score >= 80) return "bg-emerald-300";
+    if (score >= 60) return "bg-amber-300";
+    return "bg-rose-400";
   };
 
   const getPriorityColor = (priority: string) => {
     if (priority === "high")
-      return "bg-red-100 dark:bg-red-900/30 text-red-600 border-red-200 dark:border-red-800";
+      return "bg-rose-400 text-black border-2 border-black font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(250,250,250,1)]";
     if (priority === "medium")
-      return "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 border-yellow-200 dark:border-yellow-800";
-    return "bg-blue-100 dark:bg-blue-900/30 text-blue-600 border-blue-200 dark:border-blue-800";
+      return "bg-amber-300 text-black border-2 border-black font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(250,250,250,1)]";
+    return "bg-cyan-300 text-black border-2 border-black font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(250,250,250,1)]";
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 bg-secondary/30">
       <div className="text-center mb-12">
         <div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border bg-red-50 dark:bg-red-950/30 mb-4"
+          className="inline-flex items-center gap-2 px-4 py-2 border-3 border-black dark:border-zinc-100 bg-rose-300 dark:bg-rose-950/50 mb-6 font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(250,250,250,1)] rounded-none"
         >
-          <FileCheck size={16} className="text-red-500" />
-          <span className="text-sm font-medium">AI-Powered ATS Analysis</span>
+          <FileCheck size={16} className="text-black dark:text-rose-400" />
+          <span className="text-sm">AI-Powered ATS Analysis (no cap)</span>
         </div>
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight uppercase">
           Optimize Your Resume for ATS
         </h2>
-        <p className="text-lg opacity-70 max-w-2xl mx-auto mb-8">
-          Get instant feedback on your resume's compatibility with Applicant
-          Tracking Systems
+        <p className="text-lg opacity-85 max-w-2xl mx-auto mb-8 font-medium">
+          Get instant vibe check on your resume&apos;s compatibility with Applicant
+          Tracking Systems. Rizz up recruiters.
         </p>
 
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="lg" className="gap-2 h-12 px-8">
-              <FileText size={18} />
+            <Button size="lg" className="neo-btn neo-btn-hover gap-2 h-14 px-8 rounded-none bg-amber-300 text-black border-3 hover:bg-amber-400">
+              <FileText size={20} />
               Analyze My Resume
-              <ArrowRight size={18} />
+              <ArrowRight size={20} />
             </Button>
           </DialogTrigger>
 
-          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto neo-card rounded-none p-6 md:p-8 dark:border-zinc-100 dark:shadow-[6px_6px_0px_0px_rgba(250,250,250,1)]">
             {!response ? (
               <>
-                <DialogHeader>
-                  <DialogTitle className="text-2xl flex items-center gap-2">
-                    <FileText className="text-red-500" />
+                <DialogHeader className="mb-6">
+                  <DialogTitle className="text-3xl font-black uppercase flex items-center gap-3">
+                    <FileText className="text-rose-500" size={28} />
                     Upload Your Resume
                   </DialogTitle>
-                  <DialogDescription>
+                  <DialogDescription className="text-base font-medium opacity-80">
                     Upload your resume in PDF format to get an instant ATS
-                    compatibility analysis
+                    compatibility analysis.
                   </DialogDescription>
                 </DialogHeader>
 
-                <div className="space-y-4 py-4">
+                <div className="space-y-6 py-2">
                   <div
                     onClick={() => fileInputRef.current?.click()}
-                    className="border-2 border-dashed rounded-lg p-12 text-center cursor-pointer hover:border-blue-500 transition-colors"
+                    className="border-3 border-dashed border-black dark:border-zinc-100 bg-zinc-50 dark:bg-zinc-900/50 p-12 text-center cursor-pointer hover:bg-amber-100 dark:hover:bg-zinc-800/80 transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,1)] rounded-none"
                   >
                     <div className="flex flex-col items-center gap-4">
                       <div
-                        className="h-16 w-16 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center"
+                        className="h-16 w-16 border-3 border-black dark:border-zinc-100 bg-amber-300 dark:bg-amber-500 flex items-center justify-center rounded-none shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_0px_rgba(250,250,250,1)]"
                       >
-                        <Upload size={32} className="text-blue-600" />
+                        <Upload size={32} className="text-black" />
                       </div>
                       <div>
-                        <p className="font-medium mb-1">
+                        <p className="font-bold text-lg mb-1">
                           {file ? file.name : "Click to upload your resume"}
                         </p>
-                        <p className="text-sm opacity-60">
+                        <p className="text-sm font-medium opacity-70">
                           PDF format only, maximum 5MB
                         </p>
                       </div>
                       {file && (
-                        <div className="flex items-center gap-2 text-green-600">
+                        <div className="flex items-center gap-2 text-emerald-600 font-bold">
                           <CheckCircle2 size={18} />
-                          <span className="text-sm font-medium">
-                            File uploaded successfully
+                          <span className="text-sm">
+                            Ready to analyze!
                           </span>
                         </div>
                       )}
@@ -192,12 +190,12 @@ const ResumeAnalyzer = () => {
                   <Button
                     onClick={analyzeResume}
                     disabled={loading || !file}
-                    className="w-full h-11 gap-2"
+                    className="w-full h-14 gap-2 neo-btn neo-btn-hover bg-rose-400 hover:bg-rose-500 text-black rounded-none border-3"
                   >
                     {loading ? (
                       <>
                         <Loader2 size={18} className="animate-spin" />
-                        Analyzing Your Resume...
+                        Analyzing Your Resume... (letting AI cook)
                       </>
                     ) : (
                       <>
@@ -210,65 +208,70 @@ const ResumeAnalyzer = () => {
               </>
             ) : (
               <>
-                <DialogHeader>
-                  <DialogTitle className="text-2xl flex items-center gap-2">
-                    <FileCheck className="text-red-500" />
+                <DialogHeader className="mb-6">
+                  <DialogTitle className="text-3xl font-black uppercase flex items-center gap-3">
+                    <FileCheck className="text-emerald-500" size={28} />
                     Your Resume Analysis
                   </DialogTitle>
                 </DialogHeader>
 
-                <div className="space-y-6 py-4">
+                <div className="space-y-8 py-2">
                   {/* Overall Score */}
                   <div
-                    className={`p-6 rounded-lg ${getScoreBgColor(
+                    className={`p-6 border-3 border-black dark:border-zinc-100 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(250,250,250,1)] ${getScoreBgColor(
                       response.atsScore
-                    )} border-2`}
+                    )} text-black`}
                   >
                     <div className="text-center">
-                      <p className="text-sm font-medium opacity-70 mb-2">
+                      <p className="text-sm font-bold uppercase tracking-wider mb-2 opacity-90">
                         ATS Compatibility Score
                       </p>
                       <div
-                        className={`text-6xl font-bold ${getScoreColor(
-                          response.atsScore
-                        )}`}
+                        className="text-7xl font-black tracking-tighter"
                       >
                         {response.atsScore}
                       </div>
-                      <p className="text-sm opacity-70 mt-2">out of 100</p>
+                      <p className="text-sm font-bold opacity-80 mt-2">out of 100</p>
                     </div>
                   </div>
 
                   {/* Summary */}
                   <div
-                    className="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800"
+                    className="p-5 border-3 border-black dark:border-zinc-100 bg-cyan-100 dark:bg-cyan-900/40 text-black dark:text-zinc-100 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,1)]"
                   >
-                    <p className="text-sm leading-relaxed">
+                    <h3 className="font-bold text-lg mb-2 uppercase tracking-wide">AI Summary</h3>
+                    <p className="text-sm font-semibold leading-relaxed">
                       {response.summary}
                     </p>
                   </div>
 
                   {/* Score Breakdown */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                      <TrendingUp size={20} className="text-red-500" />
+                    <h3 className="text-2xl font-black uppercase mb-4 flex items-center gap-2">
+                      <TrendingUp size={24} className="text-rose-500" />
                       Detailed Score Breakdown
                     </h3>
-                    <div className="grid md:grid-cols-2 gap-3">
+                    <div className="grid md:grid-cols-2 gap-4">
                       {Object.entries(response.scoreBreakdown).map(
                         ([key, value]) => (
-                          <div key={key} className="p-4 rounded-lg border">
+                          <div key={key} className="p-5 border-3 border-black dark:border-zinc-100 bg-zinc-50 dark:bg-zinc-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,1)]">
                             <div className="flex items-center justify-between mb-2">
-                              <p className="font-semibold capitalize">{key}</p>
+                              <p className="font-extrabold uppercase tracking-wide text-sm">{key}</p>
                               <span
-                                className={`text-lg font-bold ${getScoreColor(
+                                className={`text-base font-black px-2 py-0.5 border-2 border-black dark:border-zinc-100 ${getScoreBgColor(
                                   value.score
-                                )}`}
+                                )} text-black`}
                               >
                                 {value.score}%
                               </span>
                             </div>
-                            <p className="text-xs opacity-70">
+                            <div className="w-full bg-white dark:bg-zinc-800 border-2 border-black dark:border-zinc-100 h-4 overflow-hidden mb-2">
+                              <div
+                                className={`h-full border-r-2 border-black dark:border-zinc-100 ${getScoreBgColor(value.score)}`}
+                                style={{ width: `${value.score}%` }}
+                              />
+                            </div>
+                            <p className="text-xs font-semibold opacity-85">
                               {value.feedback}
                             </p>
                           </div>
@@ -279,19 +282,19 @@ const ResumeAnalyzer = () => {
 
                   {/* Strengths */}
                   <div
-                    className="p-4 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800"
+                    className="p-5 border-3 border-black dark:border-zinc-100 bg-emerald-200 text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,1)]"
                   >
-                    <h3 className="font-semibold mb-3 flex items-center gap-2">
-                      <CheckCircle2 size={18} className="text-green-600" />
-                      What Your Resume Does Well
+                    <h3 className="font-extrabold text-lg uppercase tracking-wide mb-3 flex items-center gap-2">
+                      <CheckCircle2 size={20} className="text-black" />
+                      What Your Resume Does Well (Certified W)
                     </h3>
                     <ul className="space-y-2">
                       {response.strengths.map((strength, index) => (
                         <li
                           key={index}
-                          className="text-sm flex items-start gap-2"
+                          className="text-sm font-bold flex items-start gap-2"
                         >
-                          <span className="text-green-600 mt-0.5">✓</span>
+                          <span className="text-black mt-0.5 font-black">✓</span>
                           <span>{strength}</span>
                         </li>
                       ))}
@@ -300,37 +303,37 @@ const ResumeAnalyzer = () => {
 
                   {/* Suggestions */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                      <AlertTriangle size={20} className="text-red-500" />
-                      Recommendations for Improvement
+                    <h3 className="text-2xl font-black uppercase mb-4 flex items-center gap-2">
+                      <AlertTriangle size={24} className="text-rose-500" />
+                      Recommendations for Improvement (Don&apos;t get Cooked)
                     </h3>
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       {response.suggestions.map((suggestion, index) => (
-                        <div key={index} className="p-4 rounded-lg border">
-                          <div className="flex items-start justify-between gap-3 mb-2">
-                            <h4 className="font-semibold text-sm">
+                        <div key={index} className="p-5 border-3 border-black dark:border-zinc-100 bg-zinc-50 dark:bg-zinc-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,1)]">
+                          <div className="flex items-start justify-between gap-3 mb-3">
+                            <h4 className="font-black text-sm uppercase tracking-wide bg-black text-white dark:bg-white dark:text-black px-2 py-0.5">
                               {suggestion.category}
                             </h4>
                              <span
-                              className={`text-xs px-2 py-1 rounded-full border ${getPriorityColor(suggestion.priority)}`}
+                              className={`text-xs px-2 py-1 uppercase font-bold border-2 border-black dark:border-zinc-100 ${getPriorityColor(suggestion.priority)}`}
                             >
-                              {suggestion.priority}
+                              {suggestion.priority} priority
                             </span>
                           </div>
-                          <div className="space-y-2 text-sm">
+                          <div className="space-y-2 text-sm font-semibold">
                             <div>
-                              <span className="font-medium opacity-70">
+                              <span className="font-extrabold opacity-75">
                                 Issue:{" "}
                               </span>
-                              <span className="opacity-80">
+                              <span className="opacity-95">
                                 {suggestion.issue}
                               </span>
                             </div>
                             <div>
-                              <span className="font-medium opacity-70">
+                              <span className="font-extrabold opacity-75">
                                 Fix:{" "}
                               </span>
-                              <span className="opacity-80">
+                              <span className="opacity-95 text-rose-600 dark:text-rose-400">
                                 {suggestion.recommendation}
                               </span>
                             </div>
@@ -342,8 +345,7 @@ const ResumeAnalyzer = () => {
 
                   <Button
                     onClick={resetDialog}
-                    variant="outline"
-                    className="w-full"
+                    className="w-full h-14 neo-btn neo-btn-hover bg-white hover:bg-zinc-100 text-black rounded-none border-3"
                   >
                     Analyze Another Resume
                   </Button>

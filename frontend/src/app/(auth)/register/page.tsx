@@ -72,25 +72,30 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-background">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2">Join ProHire Nexus</h1>
-          <p className="text-sm opacity-70">
+        <div className="text-center mb-8 flex flex-col items-center justify-center space-y-2">
+          <div className="inline-block bg-red-500 text-white font-black text-xs uppercase px-2.5 py-1 border-2 border-black rotate-1">
+            Register Fr Fr
+          </div>
+          <h1 className="text-3xl font-black uppercase tracking-tight text-foreground whitespace-nowrap w-max">
+            Join the Nexus
+          </h1>
+          <p className="text-xs uppercase tracking-wider font-bold opacity-70">
             Create your account to start a new journey
           </p>
         </div>
-        <div className="border border-gray-400 rounded-2xl p-8 shadow-lg backdrop-blur-sm">
+        <div className="neo-card p-8 bg-zinc-50 dark:bg-zinc-900 border-4 border-black dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(250,250,250,1)]">
           <form onSubmit={submitHandler} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="role" className="text-sm font-medium">
+              <Label htmlFor="role" className="text-xs uppercase font-black tracking-wider">
                 I want to
               </Label>
               <select
                 id="role"
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="w-full h-11 px-4 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                className="w-full h-11 px-4 border-3 border-black dark:border-zinc-700 bg-background text-foreground focus:outline-none focus:ring-0 rounded-none font-bold"
                 required
               >
                 <option value="" className="bg-background text-foreground">Select your role</option>
@@ -102,7 +107,7 @@ const RegisterPage = () => {
             {role && (
               <div className="space-y-5 animate-in fade-in duration-300">
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="text-sm font-medium">
+                  <Label htmlFor="name" className="text-xs uppercase font-black tracking-wider">
                     Full Name
                   </Label>
                   <Input
@@ -112,11 +117,11 @@ const RegisterPage = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    className="h-11"
+                    className="h-11 border-3 border-black dark:border-zinc-700 bg-background text-foreground focus-visible:ring-0 focus-visible:border-red-500 rounded-none font-bold"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-sm font-medium">
+                  <Label htmlFor="email" className="text-xs uppercase font-black tracking-wider">
                     Email Address
                   </Label>
                   <Input
@@ -126,11 +131,11 @@ const RegisterPage = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="h-11"
+                    className="h-11 border-3 border-black dark:border-zinc-700 bg-background text-foreground focus-visible:ring-0 focus-visible:border-red-500 rounded-none font-bold"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="password" className="text-sm font-medium">
+                  <Label htmlFor="password" className="text-xs uppercase font-black tracking-wider">
                     Password
                   </Label>
                   <Input
@@ -140,12 +145,12 @@ const RegisterPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="h-11"
+                    className="h-11 border-3 border-black dark:border-zinc-700 bg-background text-foreground focus-visible:ring-0 focus-visible:border-red-500 rounded-none font-bold"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-sm font-medium">
+                  <Label htmlFor="phone" className="text-xs uppercase font-black tracking-wider">
                     Phone Number
                   </Label>
                   <Input
@@ -155,14 +160,14 @@ const RegisterPage = () => {
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     required
-                    className="h-11"
+                    className="h-11 border-3 border-black dark:border-zinc-700 bg-background text-foreground focus-visible:ring-0 focus-visible:border-red-500 rounded-none font-bold"
                   />
                 </div>
 
                 {role === "jobseeker" && (
-                  <div className="space-y-5 pt-4 border-t border-gray-400">
+                  <div className="space-y-5 pt-4 border-t-2 border-dashed border-black dark:border-zinc-700">
                     <div className="space-y-2">
-                      <Label htmlFor="resume" className="text-sm font-medium">
+                      <Label htmlFor="resume" className="text-xs uppercase font-black tracking-wider">
                         Resume (PDF)
                       </Label>
                       <Input
@@ -174,12 +179,12 @@ const RegisterPage = () => {
                             setResume(e.target.files[0]);
                           }
                         }}
-                        className="h-11 cursor-pointer"
+                        className="h-11 cursor-pointer border-3 border-black dark:border-zinc-700 bg-background text-foreground focus-visible:ring-0 focus-visible:border-red-500 rounded-none font-bold file:bg-zinc-950 file:text-white file:border-0 dark:file:bg-zinc-800 dark:file:text-white"
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="bio" className="text-sm font-medium">
+                      <Label htmlFor="bio" className="text-xs uppercase font-black tracking-wider">
                         Bio
                       </Label>
                       <Input
@@ -189,13 +194,13 @@ const RegisterPage = () => {
                         value={bio}
                         onChange={(e) => setBio(e.target.value)}
                         required
-                        className="h-11"
+                        className="h-11 border-3 border-black dark:border-zinc-700 bg-background text-foreground focus-visible:ring-0 focus-visible:border-red-500 rounded-none font-bold"
                       />
                     </div>
                   </div>
                 )}
 
-                <Button disabled={btnLoading} className="w-full">
+                <Button disabled={btnLoading} className="neo-btn neo-btn-hover w-full h-11 bg-yellow-300 hover:bg-yellow-400 text-black border-3 border-black gap-2">
                   {btnLoading ? "Please Wait..." : "Register"}
                   <ArrowRight size={18} />
                 </Button>
@@ -203,14 +208,14 @@ const RegisterPage = () => {
             )}
           </form>
 
-          <div className="mt-6 pt-6 border-t border-gray-400">
-            <p className="text-center text-sm">
+          <div className="mt-6 pt-6 border-t-2 border-dashed border-black dark:border-zinc-700">
+            <p className="text-center text-xs font-bold uppercase tracking-wider">
               Already have an account?{" "}
               <Link
                 href={"/login"}
-                className="text-blue-500 font-medium hover:underline transition-all"
+                className="text-red-500 hover:underline transition-all"
               >
-                Login?
+                Login
               </Link>
             </p>
           </div>

@@ -115,43 +115,42 @@ const JobPage = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-secondary/30">
+    <div className="min-h-screen bg-background">
       {loading ? (
         <Loading />
       ) : (
         <>
           {job && (
-            <div className="max-w-5xl mx-auto px-4 py-8">
+            <div className="max-w-5xl mx-auto px-4 py-12">
               <Button
-                variant={"ghost"}
-                className="mb-6 gap-2"
+                className="mb-8 gap-2 neo-btn neo-btn-hover bg-white hover:bg-zinc-100 text-black border-3 rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
                 onClick={() => router.back()}
               >
                 <ArrowLeft size={18} /> Back to jobs
               </Button>
 
-              <Card className="overflow-hidden shadow-lg border-2 mb-6">
-                <div className="bg-zinc-950 dark:bg-zinc-900 p-8 border-b">
+              <Card className="overflow-hidden neo-card rounded-none mb-8 dark:border-zinc-100 dark:shadow-[6px_6px_0px_0px_rgba(250,250,250,1)]">
+                <div className="bg-amber-300 dark:bg-amber-500 p-8 border-b-3 border-black text-black">
                   <div className="flex items-start justify-between gap-4 flex-wrap">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-3">
                         <span
-                          className={`px-3 py-1.5 rounded-full text-sm font-medium ${
+                          className={`px-3 py-1 border-2 border-black font-extrabold uppercase text-xs ${
                             job.is_active
-                              ? "bg-green-100 dark:bg-green-900/30 text-green-600"
-                              : "bg-red-100 dark:bg-red-900/30 text-red-600"
+                              ? "bg-emerald-300"
+                              : "bg-rose-400"
                           }`}
                         >
                           {job.is_active ? "Open" : "Closed"}
                         </span>
                       </div>
 
-                      <h1 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                      <h1 className="text-4xl md:text-5xl font-black uppercase mb-4 tracking-tight">
                         {job.title}
                       </h1>
-                      <div className="flex items-center gap-2 text-base opacity-70 mb-2 text-white">
+                      <div className="flex items-center gap-2 text-base font-bold opacity-90 mb-2">
                         <Building2 size={18} />
-                        <span>Company Name</span>
+                        <span>{job.company_name}</span>
                       </div>
                     </div>
 
@@ -159,7 +158,7 @@ const JobPage = () => {
                       <div className="shrink-0">
                         {applied ? (
                           <>
-                            <div className="flex items-center gap-2 px-6 py-3 rounded-lg bg-green-100 dark:bg-gray-900/30 text-green-600 font-medium">
+                            <div className="flex items-center gap-2 px-6 py-3 border-3 border-black bg-emerald-300 text-black font-black uppercase rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                               <CheckCircle2 size={20} />
                               Already Applied
                             </div>
@@ -170,7 +169,7 @@ const JobPage = () => {
                               <Button
                                 onClick={() => applyJobHandler(job.job_id)}
                                 disabled={btnLoading}
-                                className="gap-2 h-12 px-8"
+                                className="gap-2 h-14 px-8 neo-btn neo-btn-hover bg-rose-400 hover:bg-rose-500 text-black border-3 rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
                               >
                                 <Briefcase size={18} />{" "}
                                 {btnLoading ? "Applying..." : "Easy Apply"}
@@ -186,52 +185,52 @@ const JobPage = () => {
                 {/* details */}
                 <div className="p-8">
                   <div className="grid md:grid-cols-3 gap-6 mb-8">
-                    <div className="flex items-center gap-3 p-4 rounded-lg border bg-background">
-                      <div className="h-12 w-12 rounded-full bg-red-100 dark:bg-red-950/30 flex items-center justify-center shrink-0">
-                        <MapPin size={20} className="text-red-500" />
+                    <div className="flex items-center gap-3 p-4 border-3 border-black dark:border-zinc-100 bg-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,1)] rounded-none">
+                      <div className="h-12 w-12 border-2 border-black bg-cyan-200 flex items-center justify-center shrink-0 rounded-none text-black">
+                        <MapPin size={20} />
                       </div>
                       <div>
-                        <p className="text-xs opacity-70 font-medium mb-1">
+                        <p className="text-xs font-bold uppercase tracking-wider opacity-70 mb-1">
                           Location
                         </p>
-                        <p className="font-semibold">{job.location}</p>
+                        <p className="font-extrabold uppercase text-sm">{job.location}</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 p-4 rounded-lg border bg-background">
-                      <div className="h-12 w-12 rounded-full bg-red-100 dark:bg-red-950/30 flex items-center justify-center shrink-0">
-                        <DollarSign size={20} className="text-red-500" />
+                    <div className="flex items-center gap-3 p-4 border-3 border-black dark:border-zinc-100 bg-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,1)] rounded-none">
+                      <div className="h-12 w-12 border-2 border-black bg-emerald-200 flex items-center justify-center shrink-0 rounded-none text-black">
+                        <DollarSign size={20} />
                       </div>
                       <div>
-                        <p className="text-xs opacity-70 font-medium mb-1">
+                        <p className="text-xs font-bold uppercase tracking-wider opacity-70 mb-1">
                           Salary
                         </p>
-                        <p className="font-semibold">₹{job.salary} P.A</p>
+                        <p className="font-extrabold uppercase text-sm">₹{job.salary} P.A</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 p-4 rounded-lg border bg-background">
-                      <div className="h-12 w-12 rounded-full bg-red-100 dark:bg-red-950/30 flex items-center justify-center shrink-0">
-                        <Users size={20} className="text-red-500" />
+                    <div className="flex items-center gap-3 p-4 border-3 border-black dark:border-zinc-100 bg-background shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,1)] rounded-none">
+                      <div className="h-12 w-12 border-2 border-black bg-amber-200 flex items-center justify-center shrink-0 rounded-none text-black">
+                        <Users size={20} />
                       </div>
                       <div>
-                        <p className="text-xs opacity-70 font-medium mb-1">
+                        <p className="text-xs font-bold uppercase tracking-wider opacity-70 mb-1">
                           Openings
                         </p>
-                        <p className="font-semibold">{job.openings} positions</p>
+                        <p className="font-extrabold uppercase text-sm">{job.openings} positions</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Job description */}
                   <div className="space-y-4">
-                    <h2 className="text-2xl font-bold flex items-center gap-2">
-                      <Briefcase size={24} className="text-red-500" />
+                    <h2 className="text-2xl font-black uppercase flex items-center gap-2">
+                      <Briefcase size={24} className="text-rose-500" />
                       Job Description
                     </h2>
 
-                    <div className="p-6 rounded-lg bg-secondary border">
-                      <p className="text-base leading-relaxed whitespace-pre-line">
+                    <div className="p-6 border-3 border-black dark:border-zinc-100 bg-zinc-50 dark:bg-zinc-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,1)] rounded-none">
+                      <p className="text-base font-semibold leading-relaxed whitespace-pre-line text-foreground/90">
                         {job.description}
                       </p>
                     </div>
@@ -244,54 +243,54 @@ const JobPage = () => {
       )}
 
       {user && job && user.user_id === job.posted_by_recuriter_id && (
-        <div className="w-[90%] md:w-2/3 container mx-auto mt-8 mb-8">
-          <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-            <h2 className="text-2xl font-bold">All Applications</h2>
-            <div className="flex items-center gap-2">
-              <label htmlFor="filter-status" className="text-sm font-medium">
+        <div className="w-[90%] md:w-2/3 container mx-auto mt-8 mb-16">
+          <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+            <h2 className="text-3xl font-black uppercase tracking-tight">All Applications</h2>
+            <div className="flex items-center gap-3">
+              <label htmlFor="filter-status" className="text-sm font-bold uppercase tracking-wide opacity-80">
                 Filter:
               </label>
               <select
                 id="filter-status"
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="p-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                className="p-2 border-3 border-black dark:border-zinc-100 bg-background text-foreground focus:outline-none rounded-none font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:bg-zinc-900"
               >
-                <option value="All" className="bg-background text-foreground">All Status</option>
-                <option value="Submitted" className="bg-background text-foreground">Submitted</option>
-                <option value="Hired" className="bg-background text-foreground">Hired</option>
-                <option value="Rejected" className="bg-background text-foreground">Rejected</option>
+                <option value="All" className="bg-background text-foreground dark:bg-zinc-900">All Status</option>
+                <option value="Submitted" className="bg-background text-foreground dark:bg-zinc-900">Submitted</option>
+                <option value="Hired" className="bg-background text-foreground dark:bg-zinc-900">Hired</option>
+                <option value="Rejected" className="bg-background text-foreground dark:bg-zinc-900">Rejected</option>
               </select>
             </div>
           </div>
 
           {jobApplications && jobApplications.length > 0 ? (
             <>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {filteredApplications.map((e) => (
                   <div
-                    className="p-4 rounded-lg border-2 bg-background"
+                    className="p-6 border-3 border-black dark:border-zinc-100 bg-zinc-50 dark:bg-zinc-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,1)] rounded-none"
                     key={e.application_id}
                   >
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-between mb-4">
                       <span
-                        className={`px-3 py-1 rounded-full text-sm font-medium ${
+                        className={`px-3 py-1 border-2 border-black font-extrabold uppercase text-xs ${
                           e.status === "Hired"
-                            ? "bg-green-100 dark:bg-green-900/30 text-green-600"
+                            ? "bg-emerald-300 text-black"
                             : e.status === "Rejected"
-                            ? "bg-red-100 dark:bg-red-900/30 text-red-600"
-                            : "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600"
+                            ? "bg-rose-400 text-black"
+                            : "bg-amber-300 text-black"
                         }`}
                       >
                         {e.status}
                       </span>
                     </div>
 
-                    <div className="flex gap-3 mb-3">
+                    <div className="flex gap-3 mb-4">
                       <Link
                         target="_blank"
                         href={e.resume}
-                        className="text-red-500 hover:underline text-sm font-medium"
+                        className="inline-block px-3 py-1.5 border-2 border-black bg-cyan-200 text-black font-extrabold uppercase text-xs hover:bg-cyan-300 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
                       >
                         View Resume
                       </Link>
@@ -299,29 +298,30 @@ const JobPage = () => {
                       <Link
                         target="_blank"
                         href={`/account/${e.applicant_id}`}
-                        className="text-red-500 hover:underline text-sm font-medium"
+                        className="inline-block px-3 py-1.5 border-2 border-black bg-rose-300 text-black font-extrabold uppercase text-xs hover:bg-rose-400 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
                       >
                         View Profile
                       </Link>
                     </div>
 
                     {/* update Status */}
-                    <div className="flex gap-2 pt-3 border-t">
+                    <div className="flex gap-2 pt-4 border-t-2 border-black dark:border-zinc-100">
                       <select
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
-                        className="flex-1 p-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        className="flex-1 p-2 border-3 border-black dark:border-zinc-100 bg-background text-foreground focus:outline-none rounded-none font-bold dark:bg-zinc-900"
                       >
-                        <option value="" className="bg-background text-foreground">Update status</option>
-                        <option value="Submitted" className="bg-background text-foreground">Submitted</option>
-                        <option value="Hired" className="bg-background text-foreground">Hired</option>
-                        <option value="Rejected" className="bg-background text-foreground">Rejected</option>
+                        <option value="" className="bg-background text-foreground dark:bg-zinc-900">Update status</option>
+                        <option value="Submitted" className="bg-background text-foreground dark:bg-zinc-900">Submitted</option>
+                        <option value="Hired" className="bg-background text-foreground dark:bg-zinc-900">Hired</option>
+                        <option value="Rejected" className="bg-background text-foreground dark:bg-zinc-900">Rejected</option>
                       </select>
                       <Button
                         disabled={btnLoading}
                         onClick={() =>
                           updateApplicationHandler(e.application_id)
                         }
+                        className="neo-btn neo-btn-hover bg-amber-300 hover:bg-amber-400 text-black rounded-none border-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] px-5 h-10"
                       >
                         Update
                       </Button>
@@ -331,14 +331,14 @@ const JobPage = () => {
               </div>
 
               {filteredApplications.length === 0 && (
-                <p className="text-center py-8 opacity-70">
-                  No applications with status "{filterStatus}"
+                <p className="text-center py-8 opacity-70 font-bold">
+                  No applications with status &quot;{filterStatus}&quot;
                 </p>
               )}
             </>
           ) : (
             <>
-              <p className="text-center py-8 opacity-70">No applications yet.</p>
+              <p className="text-center py-8 opacity-70 font-bold">No applications yet.</p>
             </>
           )}
         </div>
