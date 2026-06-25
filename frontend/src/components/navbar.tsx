@@ -26,7 +26,7 @@ const NavBar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <Link href="/home" className="flex items-center gap-1 group">
+            <Link href="/" className="flex items-center gap-1 group">
               <div className="text-2xl font-bold tracking-tight">
                 <span className="bg-foreground text-background px-2 py-0.5 border-2 border-black dark:border-white font-black uppercase">
                   ProHire

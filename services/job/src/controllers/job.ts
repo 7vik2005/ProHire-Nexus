@@ -173,6 +173,12 @@ export const updateJob = TryCatch(async (req: AuthenticatedRequest, res) => {
     throw new ErrorHandler(403, "Forbidden: You are not authorized");
   }
 
+  const [hiredCountRes] = await sql`
+    SELECT COUNT(*)::int AS count FROM applications WHERE job_id = ${req.params.jobId} AND status = 'Hired'
+  `;
+
+  const activeStatus = (hiredCountRes && hiredCountRes.count >= openings) ? false : is_active;
+
   const [updatedJob] = await sql`UPDATE jobs SET title = ${title},
   description = ${description},
   salary = ${salary},
@@ -181,7 +187,7 @@ export const updateJob = TryCatch(async (req: AuthenticatedRequest, res) => {
   job_type = ${job_type},
   work_location = ${work_location},
   openings = ${openings},
-  is_active = ${is_active}
+  is_active = ${activeStatus}
   WHERE job_id = ${req.params.jobId} RETURNING *;
   `;
 
@@ -248,8 +254,12 @@ export const getAllActiveJobs = TryCatch(async (req, res) => {
 });
 
 export const getSingleJob = TryCatch(async (req, res) => {
-  const [job] =
-    await sql`SELECT * FROM jobs WHERE job_id = ${req.params.jobId}`;
+  const [job] = await sql`
+    SELECT j.*, c.name AS company_name, c.logo AS company_logo
+    FROM jobs j
+    JOIN companies c ON j.company_id = c.company_id
+    WHERE j.job_id = ${req.params.jobId}
+  `;
 
   res.json(job);
 });
@@ -280,8 +290,13 @@ export const getAllApplicationForJob = TryCatch(
       throw new ErrorHandler(403, "Forbidden: You are not authorized");
     }
 
-    const applications =
-      await sql`SELECT * FROM applications WHERE job_id = ${jobId} ORDER BY subscribed DESC, applied_at ASC`;
+    const applications = await sql`
+      SELECT a.*, u.name AS applicant_name, u.profile_pic AS applicant_profile_pic
+      FROM applications a
+      JOIN users u ON a.applicant_id = u.user_id
+      WHERE a.job_id = ${jobId}
+      ORDER BY a.subscribed DESC, a.applied_at ASC
+    `;
 
     res.json(applications);
   }
@@ -309,7 +324,7 @@ export const updateApplication = TryCatch(
     }
 
     const [job] =
-      await sql`SELECT posted_by_recuriter_id, title FROM jobs WHERE job_id = ${application.job_id}`;
+      await sql`SELECT posted_by_recuriter_id, title, openings FROM jobs WHERE job_id = ${application.job_id}`;
 
     if (!job) {
       throw new ErrorHandler(404, "No job found with this ID");
@@ -321,6 +336,15 @@ export const updateApplication = TryCatch(
 
     const [updatedApplication] =
       await sql`UPDATE applications SET status = ${req.body.status} WHERE application_id = ${id} RETURNING *`;
+
+    if (req.body.status === "Hired") {
+      const [hiredCountRes] = await sql`
+        SELECT COUNT(*)::int AS count FROM applications WHERE job_id = ${application.job_id} AND status = 'Hired'
+      `;
+      if (hiredCountRes && hiredCountRes.count >= job.openings) {
+        await sql`UPDATE jobs SET is_active = false WHERE job_id = ${application.job_id}`;
+      }
+    }
 
     const message = {
       to: application.applicant_email,

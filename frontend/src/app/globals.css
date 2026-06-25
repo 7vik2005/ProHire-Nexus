@@ -163,3 +163,16 @@
 .animate-glitch {
   animation: textGlitch 1.5s step-end infinite;
 }
+
+/* Custom Retro Cursor */
+html, body, * {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj48cGF0aCBkPSJNNCAydjE4bDUtNSA0IDggMy0yLTQtNyA2LTFMNCAyeiIgZmlsbD0iYmxhY2siIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==') 2 2, auto;
+}
+
+a, button, select, input[type="button"], input[type="submit"], [role="button"], .cursor-pointer, select option {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj48cGF0aCBkPSJNOSAyaDN2MTBoM3YtMmgydi0yaDJ2MTJIOVYyeiIgZmlsbD0iYmxhY2siIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==') 6 2, pointer !important;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], textarea, [contenteditable="true"] {
+  cursor: text !important;
+}

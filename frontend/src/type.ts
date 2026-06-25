@@ -138,6 +138,8 @@ export interface Application {
   resume: string;
   applied_at: string;
   subscribed: boolean;
+  applicant_name?: string;
+  applicant_profile_pic?: string;
   job_title: string;
   job_salary: number;
   job_location: string;

@@ -26,7 +26,7 @@ const RegisterPage = () => {
 
   if (loading) return <Loading />;
 
-  if (isAuth) return redirect("/");
+  if (isAuth) return redirect("/home");
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

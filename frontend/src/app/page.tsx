@@ -121,7 +121,7 @@ const LandingPage = () => {
                   onChange={(e) => setRizzScore(Number(e.target.value))}
                   className="w-full h-4 bg-zinc-200 dark:bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-black dark:accent-white"
                 />
-                <span className="text-3xl font-black shrink-0 w-16 text-center bg-black dark:bg-white text-background px-2 py-1 border-2 border-black">
+                <span className="text-3xl font-black shrink-0 w-24 text-center bg-black dark:bg-white text-background px-2 py-1 border-2 border-black">
                   {rizzScore}%
                 </span>
               </div>
@@ -162,7 +162,7 @@ const LandingPage = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Card 1 */}
             <div className="neo-card neo-card-hover p-6 md:p-8 space-y-4 bg-orange-400 text-black">
-              <div className="w-12 h-12 bg-white text-black rounded-full border-3 border-black flex items-center justify-center font-bold text-lg">
+              <div className="w-12 h-12 bg-white text-black dark:text-black rounded-full border-3 border-black dark:border-black flex items-center justify-center font-bold text-lg">
                 1
               </div>
               <h3 className="text-2xl font-black uppercase tracking-tight">
@@ -175,7 +175,7 @@ const LandingPage = () => {
 
             {/* Card 2 */}
             <div className="neo-card neo-card-hover p-6 md:p-8 space-y-4 bg-yellow-300 text-black">
-              <div className="w-12 h-12 bg-white text-black rounded-full border-3 border-black flex items-center justify-center font-bold text-lg">
+              <div className="w-12 h-12 bg-white text-black dark:text-black rounded-full border-3 border-black dark:border-black flex items-center justify-center font-bold text-lg">
                 2
               </div>
               <h3 className="text-2xl font-black uppercase tracking-tight">
@@ -188,7 +188,7 @@ const LandingPage = () => {
 
             {/* Card 3 */}
             <div className="neo-card neo-card-hover p-6 md:p-8 space-y-4 bg-lime-400 text-black">
-              <div className="w-12 h-12 bg-white text-black rounded-full border-3 border-black flex items-center justify-center font-bold text-lg">
+              <div className="w-12 h-12 bg-white text-black dark:text-black rounded-full border-3 border-black dark:border-black flex items-center justify-center font-bold text-lg">
                 3
               </div>
               <h3 className="text-2xl font-black uppercase tracking-tight">

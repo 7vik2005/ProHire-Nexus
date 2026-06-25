@@ -2,6 +2,7 @@
 import Loading from "@/components/loading";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { job_service, useAppData } from "@/context/AppContext";
 import { Application, Job } from "@/type";
 import axios from "axios";
@@ -243,8 +244,8 @@ const JobPage = () => {
       )}
 
       {user && job && user.user_id === job.posted_by_recuriter_id && (
-        <div className="w-[90%] md:w-2/3 container mx-auto mt-8 mb-16">
-          <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+        <div className="w-[90%] md:w-2/3 container mx-auto mt-16 mb-16 pt-8 border-t-4 border-dashed border-black dark:border-zinc-800">
+          <div className="flex items-center justify-between mb-8 flex-wrap gap-3">
             <h2 className="text-3xl font-black uppercase tracking-tight">All Applications</h2>
             <div className="flex items-center gap-3">
               <label htmlFor="filter-status" className="text-sm font-bold uppercase tracking-wide opacity-80">
@@ -266,13 +267,28 @@ const JobPage = () => {
 
           {jobApplications && jobApplications.length > 0 ? (
             <>
-              <div className="space-y-6">
+              <div className="space-y-8">
                 {filteredApplications.map((e) => (
                   <div
                     className="p-6 border-3 border-black dark:border-zinc-100 bg-zinc-50 dark:bg-zinc-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,1)] rounded-none"
                     key={e.application_id}
                   >
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center justify-between mb-4 border-b-2 border-dashed border-black dark:border-zinc-700 pb-4">
+                      <div className="flex items-center gap-3">
+                        <Avatar className="h-10 w-10 border-2 border-black dark:border-white">
+                          <AvatarImage src={e.applicant_profile_pic || ""} alt={e.applicant_name || "Applicant"} />
+                          <AvatarFallback className="bg-yellow-300 text-black font-black">
+                            {e.applicant_name?.charAt(0).toUpperCase() || "A"}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <h4 className="font-black uppercase tracking-tight text-sm text-foreground">
+                            {e.applicant_name || "Anonymous Applicant"}
+                          </h4>
+                          <p className="text-xs opacity-75 font-semibold text-foreground/80">{e.applicant_email}</p>
+                        </div>
+                      </div>
+
                       <span
                         className={`px-3 py-1 border-2 border-black font-extrabold uppercase text-xs ${
                           e.status === "Hired"

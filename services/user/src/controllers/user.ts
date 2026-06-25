@@ -260,6 +260,14 @@ export const applyForJob = TryCatch(async (req: AuthenticatedRequest, res) => {
     throw new ErrorHandler(400, "Job is not active");
   }
 
+  const hiredApplications = await sql`
+    SELECT application_id FROM applications WHERE applicant_id = ${applicant_id} AND status = 'Hired'
+  `;
+
+  if (hiredApplications.length > 0) {
+    throw new ErrorHandler(400, "You cannot apply for more jobs since you have already been hired.");
+  }
+
   const now = Date.now();
 
   const subTime = req.user?.subscription
