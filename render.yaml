@@ -1,0 +1,112 @@
+services:
+  # 1. Frontend Next.js Service
+  - type: web
+    name: prohire-nexus-frontend
+    runtime: node
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NEXT_PUBLIC_AUTH_SERVICE
+        sync: false
+      - key: NEXT_PUBLIC_UTILS_SERVICE
+        sync: false
+      - key: NEXT_PUBLIC_USER_SERVICE
+        sync: false
+      - key: NEXT_PUBLIC_JOB_SERVICE
+        sync: false
+      - key: NEXT_PUBLIC_PAYMENT_SERVICE
+        sync: false
+
+  # 2. Auth Microservice
+  - type: web
+    name: prohire-nexus-auth
+    runtime: node
+    rootDir: services/auth
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: DB_URL
+        sync: false
+      - key: UPLOAD_SERVICE
+        sync: false
+      - key: JWT_SEC
+        sync: false
+      - key: Redis_url
+        sync: false
+      - key: Frontend_Url
+        sync: false
+
+  # 3. Utils Microservice
+  - type: web
+    name: prohire-nexus-utils
+    runtime: node
+    rootDir: services/utils
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 5001
+      - key: CLOUD_NAME
+        sync: false
+      - key: API_KEY
+        sync: false
+      - key: API_SECRET
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: API_KEY_GEMINI
+        sync: false
+
+  # 4. User Microservice
+  - type: web
+    name: prohire-nexus-user
+    runtime: node
+    rootDir: services/user
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 5002
+      - key: DB_URL
+        sync: false
+      - key: JWT_SEC
+        sync: false
+
+  # 5. Job Microservice
+  - type: web
+    name: prohire-nexus-job
+    runtime: node
+    rootDir: services/job
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 5003
+      - key: DB_URL
+        sync: false
+      - key: JWT_SEC
+        sync: false
+
+  # 6. Payment Microservice
+  - type: web
+    name: prohire-nexus-payment
+    runtime: node
+    rootDir: services/payment
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 5004
+      - key: DB_URL
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: JWT_SEC
+        sync: false
